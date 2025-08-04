@@ -1,70 +1,49 @@
-# Getting Started with Create React App
+# 컨벤션
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### 1. 브랜치 규칙
 
-## Available Scripts
+1. 기본 브랜치: main
+2. 기능 개발은 반드시 새로운 브랜치에서 진행합니다.
+   - 규칙: feature/기능명 ex) feature/login
+3. 병합(Merge): PR(Pull Request)로 진행하며, 코드 리뷰 후 main에 병합합니다.
 
-In the project directory, you can run:
+---
 
-### `npm start`
+### 2. 코드 스타일
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+1. CSS
+   - styled-component 사용합니다.
+   - 공통 스타일은 `src/assets/css/style.css`에 작성합니다.
+   - 공용 변수는 `src/assets/css/setting/_vars.css`에 정의합니다.
+2. 컴포넌트
+   - 파일명은 PascalCase로 작성합니다. (`MyComponent.jsx`)
+3. 상태 관리
+   - 초반에 context 사용하다가 상황보고 zustand로 변경하겠습니다.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+---
 
-### `npm test`
+### 3. 폴더 구조
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```
+src/
+├── apis/          # API 관련 로직을 모아놓는 상위 폴더
+│   ├── api/       # axios 등으로 실제 HTTP 요청을 보내는 함수들 (순수 fetch 역할)
+│   ├── service    # api 응답을 가공하거나 비즈니스 로직을 포함한 계층 (ex: 토큰 저장, 정제 등)
+│   └── utils/     # axios 인스턴스 설정, 인터셉터, 공통 API 유틸 함수 등
+│
+├── assets/        # 정적 파일들 (이미지, 스타일 등)
+│   ├── css/       # 전역 스타일(CSS, SCSS 등)
+│   └── img/       # 프로젝트에서 사용하는 이미지 파일
+│
+├── components/    # 재사용 가능한 컴포넌트들 (버튼, 카드 등 UI 단위)
+│
+├── contexts/      # React Context API를 사용하는 글로벌 상태 관리 (ex: 로그인 상태, 테마 등)
+│
+├── hooks/         # 커스텀 훅 모음 (ex: useAuth, useFetch 등)
+│
+├── layouts/       # 페이지 전체 레이아웃 컴포넌트 (ex: Header + Sidebar + Outlet 구조)
+│
+├── pages/         # 실제 라우트 단위 페이지 컴포넌트 (ex: LoginPage, MainPage 등)
+│
+└── App.js         # 리액트 앱의 진입점 및 라우팅 정의
+```
