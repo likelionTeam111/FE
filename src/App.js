@@ -1,10 +1,13 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-//페이지
-import Mainpage from './pages/Mainpage';
-import ChatbotPage from './pages/ChatbotPage';
-import MyPage from './pages/MyPage';
-import SearchPage from './pages/SearchPage';
+//Nav 페이지
+import Mainpage from './pages/Nav/Mainpage';
+import ChatbotPage from './pages/Nav/ChatbotPage';
+import MyPage from './pages/Nav/MyPage';
+import SearchPage from './pages/Nav/SearchPage';
+
+//PolicyListDetail 페이지
+import PolicyListPage from './pages/PolicyListDetail/PolicyListPage';
 
 //레이아웃
 import DefaultLayout from './layouts/DefaultLayout';
@@ -19,6 +22,7 @@ function App() {
           <Route path="/my" element={<MyPage />} />
           <Route path="/search" element={<SearchPage />} />
           <Route path="/chatbot" element={<ChatbotPage />} />
+          <Route path="/policyList" element={<PolicyListPage />} />
 
           <Route element={<OnboardingLayout />}></Route>
         </Route>

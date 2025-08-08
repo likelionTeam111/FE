@@ -10,16 +10,13 @@ const Container = styled.div`
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 5rem;
-`;
-const Wrapper = styled.div`
-  display: flex;
-  width: 100%;
+  height: 7vh;
+  display: inline-flex;
   justify-content: space-evenly;
   align-items: center;
 `;
-const NavBox = styled.div``;
-const Nav = styled.span`
+
+const NavText = styled.span`
   font-size: 2.5rem;
 `;
 
@@ -32,28 +29,18 @@ const Footer = () => {
         <></>
       ) : (
         <Container>
-          <Wrapper>
-            <Link to="/">
-              <NavBox>
-                <Nav>홈</Nav>
-              </NavBox>
-            </Link>
-            <Link to="/search">
-              <NavBox>
-                <Nav>탐색</Nav>
-              </NavBox>
-            </Link>
-            <Link to="/chatbot">
-              <NavBox>
-                <Nav>AI챗봇</Nav>
-              </NavBox>
-            </Link>
-            <Link to="/my">
-              <NavBox>
-                <Nav>마이페이지</Nav>
-              </NavBox>
-            </Link>
-          </Wrapper>
+          <Link to="/">
+            <NavText>홈</NavText>
+          </Link>
+          <Link to="/search">
+            <NavText>탐색</NavText>
+          </Link>
+          <Link to="/chatbot">
+            <NavText>AI챗봇</NavText>
+          </Link>
+          <Link to="/my">
+            <NavText>마이페이지</NavText>
+          </Link>
         </Container>
       )}
     </>
