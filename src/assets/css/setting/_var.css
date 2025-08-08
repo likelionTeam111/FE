@@ -1,13 +1,10 @@
 :root {
   /* 메인 컬러 */
-  --mainBg1: #1686f9;
-  --mainBg2: #ecf2fa;
-
-  /* 서브 컬러 */
-  --subBg: #efefef;
+  --mainBlue: #1686f9;
+  --mainSky: #ecf2fa;
 
   /* 버튼 컬러 */
-  --buttonBg: #556376;
+  --buttonGrey: #556376;
 
   /* 기본 색상 세트 */
   --white: #fff;

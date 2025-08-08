@@ -15,6 +15,7 @@
    - styled-component 사용합니다.
    - 공통 스타일은 `src/assets/css/style.css`에 작성합니다.
    - 공용 변수는 `src/assets/css/setting/_vars.css`에 정의합니다.
+     - 공용 변수 사용법 예시 : `background-color : var(--mainBlue)` `color : var(--black)`
 2. 컴포넌트
    - 파일명은 PascalCase로 작성합니다. (`MyComponent.jsx`)
 3. 상태 관리
@@ -35,15 +36,25 @@ src/
 │   ├── css/       # 전역 스타일(CSS, SCSS 등)
 │   └── img/       # 프로젝트에서 사용하는 이미지 파일
 │
-├── components/    # 재사용 가능한 컴포넌트들 (버튼, 카드 등 UI 단위)
+├── components/    # 공용 컴포넌트 (헤더, 푸터)
 │
 ├── contexts/      # React Context API를 사용하는 글로벌 상태 관리 (ex: 로그인 상태, 테마 등)
 │
 ├── hooks/         # 커스텀 훅 모음 (ex: useAuth, useFetch 등)
 │
 ├── layouts/       # 페이지 전체 레이아웃 컴포넌트 (ex: Header + Sidebar + Outlet 구조)
+|
+├── features/      # 각 페이지 기능
+│   ├── policyList/
+|   |      |─── components
+|   |      |─── hooks
+|   |
+│   |
+│   └── chatbot/
+|          |─── components
+|          |─── hooks
 │
-├── pages/         # 실제 라우트 단위 페이지 컴포넌트 (ex: LoginPage, MainPage 등)
+├── pages/         # 실제 라우트 단위 페이지 컴포넌트 (여기에 features/components요소들을 불러옵니다.)
 │
 └── App.js         # 리액트 앱의 진입점 및 라우팅 정의
 ```
