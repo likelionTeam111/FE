@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 const Container = styled.div`
   height: 12rem;
@@ -8,7 +9,8 @@ const Container = styled.div`
   flex-direction: column;
   background-color: var(--white);
   border: none;
-  border-radius: 30px;
+  border-radius: 20px;
+  padding: 2rem;
 `;
 
 const TitleWrapper = styled.div`
@@ -20,13 +22,18 @@ const TitleWrapper = styled.div`
   padding-right: 2rem;
 `;
 const Title = styled.span`
-  font-size: 2rem;
+  font-size: 3rem;
   font-weight: bold;
 `;
 const Button = styled.button`
   font-size: 2rem;
   font-weight: bold;
   background-color: var(--whtie);
+`;
+const Keyword = styled.span`
+  padding-left: 2rem;
+  color: var(--grey);
+  font-size: 1.5rem;
 `;
 
 const KeywordWrapper = styled.div`
@@ -35,9 +42,9 @@ const KeywordWrapper = styled.div`
   align-items: center;
   justify-content: flex-start;
   padding-left: 2rem;
-  gap: 2rem;
+  gap: 1rem;
 `;
-const Keyword = styled.span`
+const Category = styled.span`
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -45,22 +52,26 @@ const Keyword = styled.span`
   border-radius: 9999px;
   border: solid var(--mainBlue);
   padding: 0.5rem;
-  min-width: 8rem;
+  min-width: 5rem;
   background-color: var(--mainBlue);
   color: var(--white);
 `;
 
-const PolicyCard = () => {
+const PolicyCard = ({ policy }) => {
+  const { plcyNo, plcyKywdNm, plcyNm, lclsfNm, mclsfNm } = policy;
+
   return (
     <Container>
       <TitleWrapper>
-        <Title>청년 자격증 지원 사업</Title>
-        <Button>{'>'}</Button>
+        <Title>{plcyNm}</Title>
+        <Link to={`/policyDetail/${plcyNo}`}>
+          <Button>{'>'}</Button>
+        </Link>
       </TitleWrapper>
+      <Keyword># {plcyKywdNm}</Keyword>
       <KeywordWrapper>
-        <Keyword>일자리</Keyword>
-        <Keyword>취업</Keyword>
-        <Keyword>청년 일자리사업 참여청년 모집</Keyword>
+        <Category>{lclsfNm}</Category>
+        <Category>{mclsfNm}</Category>
       </KeywordWrapper>
     </Container>
   );

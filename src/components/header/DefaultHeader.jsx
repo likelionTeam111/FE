@@ -11,7 +11,7 @@ const Container = styled.div`
 const BackSpace = styled.button`
   font-size: 3.5rem;
   font-weight: bold;
-  margin-left: 5rem;
+  margin-left: 5vw;
   background-color: ${({ $headerBg }) => $headerBg};
   color: ${({ $buttonBg }) => $buttonBg};
 `;
@@ -30,8 +30,13 @@ const Header = () => {
   const isHome = location.pathname === '/';
   let headerBg = 'var(--white)';
   let buttonBg = 'var(--black)';
+
+  //페이지마다 헤더 변경
   if (location.pathname === '/policyList') {
     headerBg = `var(--mainSky)`;
+  } else if (location.pathname.startsWith('/policyDetail')) {
+    headerBg = `var(--mainBlue)`;
+    buttonBg = 'var(--white)';
   }
 
   return (

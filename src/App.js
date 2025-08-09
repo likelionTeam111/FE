@@ -8,6 +8,7 @@ import SearchPage from './pages/Nav/SearchPage';
 
 //PolicyListDetail 페이지
 import PolicyListPage from './pages/PolicyListDetail/PolicyListPage';
+import PolicyDetailPage from './pages/PolicyListDetail/PolicyDetailPage';
 
 //레이아웃
 import DefaultLayout from './layouts/DefaultLayout';
@@ -23,9 +24,9 @@ function App() {
           <Route path="/search" element={<SearchPage />} />
           <Route path="/chatbot" element={<ChatbotPage />} />
           <Route path="/policyList" element={<PolicyListPage />} />
-
-          <Route element={<OnboardingLayout />}></Route>
+          <Route path="/policyDetail/:plcyNo" element={<PolicyDetailPage />} />
         </Route>
+        <Route element={<OnboardingLayout />}></Route>
       </Routes>
     </BrowserRouter>
   );
