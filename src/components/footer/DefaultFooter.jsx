@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const Container = styled.div`
   background-color: var(--white);
@@ -21,28 +21,22 @@ const NavText = styled.span`
 `;
 
 const Footer = () => {
-  const location = useLocation();
-  const isChatbot = location.pathname === '/chatbot';
   return (
     <>
-      {isChatbot ? (
-        <></>
-      ) : (
-        <Container>
-          <Link to="/">
-            <NavText>홈</NavText>
-          </Link>
-          <Link to="/search">
-            <NavText>탐색</NavText>
-          </Link>
-          <Link to="/chatbot">
-            <NavText>AI챗봇</NavText>
-          </Link>
-          <Link to="/my">
-            <NavText>마이페이지</NavText>
-          </Link>
-        </Container>
-      )}
+      <Container>
+        <Link to="/">
+          <NavText>홈</NavText>
+        </Link>
+        <Link to="/search">
+          <NavText>탐색</NavText>
+        </Link>
+        <Link to="/chatbot">
+          <NavText>AI챗봇</NavText>
+        </Link>
+        <Link to="/my">
+          <NavText>마이페이지</NavText>
+        </Link>
+      </Container>
     </>
   );
 };
