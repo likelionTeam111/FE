@@ -22,7 +22,7 @@ const TitleWrapper = styled.div`
   padding-right: 2rem;
 `;
 const Title = styled.span`
-  font-size: 3rem;
+  font-size: 2rem;
   font-weight: bold;
 `;
 const Button = styled.button`
@@ -48,7 +48,7 @@ const Category = styled.span`
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   border-radius: 9999px;
   border: solid var(--mainBlue);
   padding: 0.5rem;
