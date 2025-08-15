@@ -10,6 +10,11 @@ import SearchPage from './pages/Nav/SearchPage';
 import PolicyListPage from './pages/PolicyListDetail/PolicyListPage';
 import PolicyDetailPage from './pages/PolicyListDetail/PolicyDetailPage';
 
+//로그인 페이지
+import AuthPage from './pages/Login/AuthPage';
+import LoginPage from './pages/Login/LoginPage';
+import SignUpPage from './pages/Login/SignUpPage';
+
 //레이아웃
 import DefaultLayout from './layouts/DefaultLayout';
 import OnboardingLayout from './layouts/OnboardingLayout';
@@ -26,6 +31,10 @@ function App() {
           <Route path="/policyList" element={<PolicyListPage />} />
           <Route path="/policyDetail/:plcyNo" element={<PolicyDetailPage />} />
         </Route>
+        <Route path="/auth" element={<AuthPage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/signup" element={<SignUpPage />} />
+
         <Route element={<OnboardingLayout />}></Route>
       </Routes>
     </BrowserRouter>
