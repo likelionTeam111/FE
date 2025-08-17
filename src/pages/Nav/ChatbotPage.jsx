@@ -35,13 +35,12 @@ const Title = styled.span`
 
 const ChatbotPage = () => {
   return (
-    <>
+    <Container>
       <Bg />
-      <Container>
-        <Title>AI챗봇</Title>
-        <Chatbot />
-      </Container>
-    </>
+
+      <Title>AI챗봇</Title>
+      <Chatbot />
+    </Container>
   );
 };
 
