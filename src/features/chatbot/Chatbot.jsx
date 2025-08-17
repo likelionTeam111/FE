@@ -144,12 +144,10 @@ const Chatbot = () => {
 
         {messages?.map((m, idx) => {
           return (
-            <>
-              <MsseageBox key={idx}>
-                {m.direction === 'ingoing' && <Avatar src={ai} />}
-                <Message $right={m.direction === 'outgoing'}>{m.message}</Message>
-              </MsseageBox>
-            </>
+            <MsseageBox key={idx}>
+              {m.direction === 'ingoing' && <Avatar src={ai} />}
+              <Message $right={m.direction === 'outgoing'}>{m.message}</Message>
+            </MsseageBox>
           );
         })}
       </MessageWrapper>
