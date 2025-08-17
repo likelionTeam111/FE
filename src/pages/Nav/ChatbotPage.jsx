@@ -37,7 +37,6 @@ const ChatbotPage = () => {
   return (
     <>
       <Bg />
-
       <Container>
         <Title>AI챗봇</Title>
         <Chatbot />

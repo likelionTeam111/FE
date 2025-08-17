@@ -10,19 +10,19 @@ import { openAi } from '../../apis/openAi';
 
 const Container = styled.div`
   box-sizing: border-box;
-  height: 100%;
-
   display: flex;
   flex-direction: column;
+  flex: 1; /* 부모 높이를 꽉 채움 */
+  min-height: 0; /* 내부 스크롤 허용 (중요) */
   gap: 0.5rem;
 `;
 const MessageWrapper = styled.div`
+  flex: 1; /* 남는 높이를 가져감 */
+  min-height: 0; /* flex 자식 스크롤 허용 (중요) */
   overflow-y: auto;
-  height: 55rem; /*고정 높이 주어야 텍스트 많아져도 비율 유지되더라*/
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  min-height: 0;
 `;
 const MsseageBox = styled.div`
   display: flex;
@@ -49,8 +49,7 @@ const Avatar = styled.img`
 
 const Form = styled.form`
   height: auto;
-  margin: auto;
-  margin-top: 0.5rem;
+  margin: 0 auto 0.5rem; /* 가운데 정렬만, 세로 auto 제거 */
 `;
 
 const ResetBnt = styled.button`
@@ -87,12 +86,12 @@ const Chatbot = () => {
   //대화 기록 불러오기
   useEffect(() => {
     const saved = localStorage.getItem('chat_message');
-    setMessages(JSON.parse(saved));
+    if (saved !== null) setMessages(JSON.parse(saved));
   }, []);
 
   // 대화 초기화
   const handleReset = () => {
-    localStorage.clear();
+    localStorage.removeItem('chat_message');
     setMessages([]);
   };
   //메시지 보내기
@@ -146,11 +145,9 @@ const Chatbot = () => {
         {messages?.map((m, idx) => {
           return (
             <>
-              <MsseageBox>
+              <MsseageBox key={idx}>
                 {m.direction === 'ingoing' && <Avatar src={ai} />}
-                <Message key={idx} $right={m.direction === 'outgoing'}>
-                  {m.message}
-                </Message>
+                <Message $right={m.direction === 'outgoing'}>{m.message}</Message>
               </MsseageBox>
             </>
           );
