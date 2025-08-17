@@ -1,12 +1,47 @@
 import styled from 'styled-components';
+//페이지
+import Chatbot from '../../features/chatbot/Chatbot';
 
-const Container = styled.div``;
+const Bg = styled.div`
+  position: fixed; /* 뷰포트 전체를 덮음 */
+  inset: 0;
+  height: 25rem;
+  z-index: -1; /* 맨 뒤에 */
+  pointer-events: none; /* 클릭 막지 않게 */
+  background:
+  /* 하단을 하얗게 페이드시키는 오버레이 */ linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0) 65%,
+      rgba(255, 255, 255, 0.6) 90%,
+      #fff 100%
+    ),
+    /* 기본 파랑 그라데이션은 더 길게 퍼지게 */
+      linear-gradient(180deg, #6fb6ff 0%, #61aeff 32%, #7fc0ff 62%, #d9ebff 90%, #f8fbff 100%);
+`;
+
+const Container = styled.div`
+  z-index: 1000;
+  height: calc(100dvh - 12rem); // 페이지는 100dvh에서 헤더, 높이 빼주기
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+`;
+const Title = styled.span`
+  margin: auto;
+  font-size: 2.2rem;
+  color: var(--white);
+`;
 
 const ChatbotPage = () => {
   return (
-    <Container>
-      <h1>챗봇 페이지입니다.</h1>
-    </Container>
+    <>
+      <Bg />
+      <Container>
+        <Title>AI챗봇</Title>
+        <Chatbot />
+      </Container>
+    </>
   );
 };
 
