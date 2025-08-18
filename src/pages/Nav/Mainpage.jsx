@@ -5,7 +5,7 @@ import AiIcon from '../../assets/img/ai.png';
 const PageContainer = styled.main`
     background-color: var(--mainSky);
     min-height: 100vh;
-    padding: 2rem 2rem 12rem;
+    padding: 3rem 2rem 12rem;
 `;
 
 const Section = styled.section`
@@ -18,20 +18,20 @@ const ServiceTitle = styled.h2`
     font-weight: 700;
     color: var(--black);
     line-height: 1.5;
-    margin-top: 1rem;
+    margin-top: 1.5rem;
 `;
 
 const Greeting = styled.p`
     font-size: 1.4rem;
     color: rgba(85, 99, 118, 0.7);
-    margin-top: 1rem;
+    margin-top: 1.5rem;
 `;
 
 const RecommendWrap = styled.div`
     background-color: var(--mainBlue);
     border-radius: 1.6rem;
-    padding: 1.8rem;
-    margin-top: 2rem;
+    padding: 2.2rem;
+    margin-top: 3rem;
     color: var(--white);
 `;
 
@@ -49,7 +49,7 @@ const RecommendTitle = styled.h3`
 const RecommendDesc = styled.p`
     font-size: 1.2rem;
     opacity: 0.9;
-    margin-top: 0.6rem;
+    margin-top: 1rem;
 `;
 
 const ViewAll = styled.button`
@@ -62,14 +62,14 @@ const CardsRow = styled.div`
     display: flex;
     gap: 1.2rem;
     overflow-x: auto;
-    padding: 1.4rem 0 1.2rem;
+    padding: 2rem 0 1.8rem;
 `;
 
 const PolicyCard = styled.div`
     background: var(--white);
     color: var(--black);
     border-radius: 1.2rem;
-    padding: 1.4rem;
+    padding: 1.8rem;
     min-width: 16rem;
     box-shadow: 0 0.6rem 1.4rem rgba(0, 0, 0, 0.08);
 `;
@@ -81,18 +81,18 @@ const PolicyTitle = styled.p`
 
 const Tag = styled.span`
     display: inline-block;
-    margin-top: 0.8rem;
+    margin-top: 1rem;
     font-size: 1.1rem;
     color: rgba(0, 0, 0, 0.6);
 `;
 
 const ReSearchButton = styled.button`
     width: 100%;
-    margin-top: 0.8rem;
+    margin-top: 1.2rem;
     background: var(--white);
     color: var(--black);
     border-radius: 1.2rem;
-    padding: 1.4rem 1.6rem;
+    padding: 1.6rem 1.6rem;
     font-size: 1.4rem;
     font-weight: 700;
 `;
@@ -103,8 +103,8 @@ const HelperBanner = styled.div`
     gap: 1rem;
     background: var(--white);
     border-radius: 1.2rem;
-    padding: 1.2rem 1.6rem;
-    margin-top: 1.6rem;
+    padding: 1.6rem 1.8rem;
+    margin-top: 2.5rem;
     box-shadow: 0 0.4rem 1.2rem rgba(0, 0, 0, 0.06);
 `;
 
@@ -123,8 +123,8 @@ const CtaButton = styled.button`
     background: var(--buttonGrey);
     color: var(--white);
     border-radius: 1.6rem;
-    padding: 1.8rem 1.6rem;
-    margin-top: 1.2rem;
+    padding: 2rem 1.6rem;
+    margin-top: 2rem;
     font-size: 1.6rem;
     font-weight: 800;
     box-shadow: 0 0.8rem 2rem rgba(85, 99, 118, 0.25);

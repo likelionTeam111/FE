@@ -1,0 +1,202 @@
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
+
+const ExtraContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: var(--white);
+    padding: 0 20px;
+`;
+
+const ProgressBar = styled.div`
+    width: 100%;
+    height: 4px;
+    background-color: #f0f0f0;
+    margin-top: 20px;
+    border-radius: 2px;
+    overflow: hidden;
+`;
+
+const ProgressFill = styled.div`
+    width: 83.33%;
+    height: 100%;
+    background-color: var(--mainBlue);
+    border-radius: 2px;
+    transition: width 0.3s ease;
+`;
+
+// 메인 콘텐츠
+const ExtraContent = styled.div`
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 60px 0;
+    justify-content: center;
+`;
+
+// 제목
+const ExtraTitle = styled.h1`
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--black);
+    margin-bottom: 32px;
+    line-height: 1.4;
+    text-align: center;
+`;
+
+// 예시 텍스트 컨테이너
+const ExampleContainer = styled.div`
+    margin-bottom: 40px;
+`;
+
+const ExampleTitle = styled.h2`
+    font-size: 16px;
+    font-weight: 600;
+    color: #666;
+    margin-bottom: 16px;
+    text-align: center;
+`;
+
+const ExampleText = styled.p`
+    font-size: 14px;
+    color: #666;
+    line-height: 1.5;
+    text-align: center;
+    margin-bottom: 8px;
+`;
+
+// 입력 필드
+const InputField = styled.textarea`
+    width: 100%;
+    min-height: 120px;
+    padding: 16px;
+    border: 2px solid #e0e0e0;
+    border-radius: 12px;
+    font-size: 16px;
+    font-family: inherit;
+    background-color: var(--white);
+    resize: none;
+    transition: border-color 0.2s ease;
+    margin-bottom: 40px;
+
+    &:focus {
+        outline: none;
+        border-color: var(--mainBlue);
+    }
+
+    &::placeholder {
+        color: #999;
+    }
+`;
+
+// 하단 네비게이션
+const NavigationContainer = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+`;
+
+const NavigationButton = styled.button`
+    background: none;
+    border: none;
+    font-size: 16px;
+    color: #666;
+    cursor: pointer;
+    padding: 8px 0;
+    transition: color 0.2s ease;
+
+    &:hover {
+        color: var(--mainBlue);
+    }
+`;
+
+// 다음 버튼
+const NextButton = styled.button`
+    width: 100%;
+    height: 56px;
+    background-color: ${(props) => (props.disabled ? '#e0e0e0' : 'var(--mainBlue)')};
+    color: var(--white);
+    border: none;
+    border-radius: 16px;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: ${(props) => (props.disabled ? 'not-allowed' : 'pointer')};
+    transition: all 0.2s ease;
+    margin-top: 20px;
+
+    &:hover {
+        background-color: ${(props) => (props.disabled ? '#e0e0e0' : '#1478e0')};
+        transform: ${(props) => (props.disabled ? 'none' : 'translateY(-2px)')};
+    }
+
+    @media (max-width: 375px) {
+        height: 52px;
+        font-size: 17px;
+    }
+`;
+
+const ExtraInfo = () => {
+    const navigate = useNavigate();
+    const [additionalInfo, setAdditionalInfo] = useState('');
+
+    const handlePrevious = () => {
+        navigate('/onboarding/occupation-info');
+    };
+
+    const handleSkip = () => {
+        navigate('/onboarding/final');
+    };
+
+    const handleNext = () => {
+        navigate('/onboarding/final');
+    };
+
+    return (
+        <ExtraContainer>
+            {/* 진행률 표시줄 */}
+            <ProgressBar>
+                <ProgressFill />
+            </ProgressBar>
+
+            {/* 메인 콘텐츠 */}
+            <ExtraContent>
+                {/* 제목 */}
+                <ExtraTitle>
+                    마지막으로,
+                    <br />
+                    더 알려주실 내용이 있나요?
+                    <br />
+                    AI가 놓치는 정보가 없도록 도와주세요!
+                </ExtraTitle>
+
+                {/* 예시 텍스트 */}
+                <ExampleContainer>
+                    <ExampleTitle>이런 상황이라면 꼭 알려주세요!</ExampleTitle>
+                    <ExampleText>ex. 곧 이직/퇴사 예정이에요,</ExampleText>
+                    <ExampleText>프리랜서라 소득이 불규칙해요..</ExampleText>
+                </ExampleContainer>
+
+                {/* 입력 필드 */}
+                <InputField
+                    placeholder="직접 입력해주세요."
+                    value={additionalInfo}
+                    onChange={(e) => setAdditionalInfo(e.target.value)}
+                />
+            </ExtraContent>
+
+            {/* 하단 네비게이션 */}
+            <NavigationContainer>
+                <NavigationButton onClick={handlePrevious}>&lt; 이전단계</NavigationButton>
+                <NavigationButton onClick={handleSkip}>건너뛰기 &gt;</NavigationButton>
+            </NavigationContainer>
+
+            {/* 다음 버튼 */}
+            <NextButton onClick={handleNext}>다음</NextButton>
+        </ExtraContainer>
+    );
+};
+
+export default ExtraInfo;
