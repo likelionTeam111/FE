@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import AiIcon from '../../assets/img/ai.png';
+import PixelLogo from '../../assets/img/pixel-logo.png';
 
 const PageContainer = styled.main`
     background-color: var(--mainSky);
@@ -28,11 +29,25 @@ const Greeting = styled.p`
 `;
 
 const RecommendWrap = styled.div`
+    position: relative;
     background-color: var(--mainBlue);
     border-radius: 1.6rem;
     padding: 2.2rem;
     margin-top: 3rem;
     color: var(--white);
+    overflow: hidden;
+
+    &::after {
+        content: '';
+        position: absolute;
+        right: 1rem;
+        bottom: 0.5rem;
+        width: 220px;
+        height: 220px;
+        background: url(${PixelLogo}) no-repeat center/contain;
+        opacity: 0.25;
+        pointer-events: none;
+    }
 `;
 
 const RecommendHead = styled.div`
@@ -177,12 +192,14 @@ const Mainpage = () => {
                         ))}
                     </CardsRow>
 
-                    <ReSearchButton onClick={() => navigate('/search')}>AI 맞춤 정책 다시 탐색하기 &gt;</ReSearchButton>
+                    <ReSearchButton onClick={() => navigate('/onboarding/profile-info')}>
+                        AI 맞춤 정책 다시 탐색하기
+                    </ReSearchButton>
                 </RecommendWrap>
 
                 <HelperBanner>
                     <HelperIcon src={AiIcon} alt="AI 도우미" />
-                    <HelperText>정책이 너무 많아 헷갈리시죠? 제가 도와드릴게요!</HelperText>
+                    <HelperText>정책이 너무 복잡하고 어렵나요? 저 AI 챗봇에게 편하게 물어보세요.</HelperText>
                 </HelperBanner>
 
                 <CtaButton onClick={() => navigate('/chatbot')}>AI 챗봇 바로가기 &gt;</CtaButton>

@@ -4,60 +4,54 @@ import { useNavigate } from 'react-router-dom';
 const PageContainer = styled.main`
     background-color: var(--mainSky);
     min-height: 100vh;
-    padding: 2rem 1.5rem 6rem;
+    padding: 2.4rem 2rem 7rem;
 `;
 
 const Section = styled.section`
-    max-width: 40rem;
+    max-width: 44rem;
     margin: 0 auto;
 `;
 
-const ServiceLabel = styled.h1`
-    font-size: 1.4rem;
-    font-weight: 800;
-    color: var(--mainBlue);
-`;
-
 const Greeting = styled.p`
-    font-size: 1.4rem;
+    font-size: 1.6rem;
     color: var(--black);
-    margin-top: 1rem;
-    line-height: 1.6;
+    margin-top: 1.2rem;
+    line-height: 1.7;
 `;
 
 const Card = styled.div`
-    margin-top: 1.6rem;
+    margin-top: 2rem;
     background: var(--white);
-    border-radius: 1.2rem;
-    padding: 1.4rem;
+    border-radius: 1.4rem;
+    padding: 1.8rem;
     box-shadow: 0 0.6rem 1.6rem rgba(0, 0, 0, 0.08);
 `;
 
 const CardTitle = styled.h3`
-    font-size: 1.1rem;
+    font-size: 1.3rem;
     color: rgba(0, 0, 0, 0.6);
-    font-weight: 700;
+    font-weight: 800;
 `;
 
 const CardDesc = styled.p`
-    font-size: 1.1rem;
-    color: rgba(0, 0, 0, 0.7);
-    margin-top: 0.6rem;
-    line-height: 1.5;
+    font-size: 1.25rem;
+    color: rgba(0, 0, 0, 0.75);
+    margin-top: 0.8rem;
+    line-height: 1.6;
 `;
 
 const ProfilePanel = styled.div`
-    margin-top: 1.2rem;
+    margin-top: 1.4rem;
     background: var(--mainBlue);
     color: var(--white);
-    border-radius: 1rem;
-    padding: 1.2rem;
+    border-radius: 1.2rem;
+    padding: 1.6rem;
 `;
 
 const InfoGrid = styled.div`
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 0.6rem 1rem;
+    gap: 0.8rem 1.4rem;
 `;
 
 const InfoItem = styled.div`
@@ -66,86 +60,76 @@ const InfoItem = styled.div`
 `;
 
 const InfoLabel = styled.span`
-    font-size: 1rem;
-    opacity: 0.9;
+    font-size: 1.15rem;
+    opacity: 0.95;
 `;
 
 const InfoValue = styled.span`
-    font-size: 1.1rem;
-    font-weight: 700;
+    font-size: 1.25rem;
+    font-weight: 800;
 `;
 
 const SubSectionTitle = styled.h4`
-    margin-top: 1.6rem;
-    font-size: 1.1rem;
+    margin-top: 2rem;
+    font-size: 1.25rem;
     color: rgba(0, 0, 0, 0.6);
 `;
 
-const LinkText = styled.p`
-    margin-top: 0.6rem;
-    font-size: 1.1rem;
+const LinkText = styled.button`
+    margin-top: 0.8rem;
+    font-size: 1.2rem;
     color: var(--black);
+    background: transparent;
+    text-align: left;
+    cursor: pointer;
 `;
 
 const LogoutButton = styled.button`
     width: 100%;
-    margin-top: 1.6rem;
-    height: 3rem;
-    border-radius: 1rem;
+    margin-top: 2rem;
+    height: 3.6rem;
+    border-radius: 1.2rem;
     background: var(--white);
     color: #ff4d4f;
     border: 2px solid #ffb3b3;
-    font-size: 1.2rem;
-    font-weight: 700;
+    font-size: 1.35rem;
+    font-weight: 800;
 `;
 
-/* 큰 화면에서는 살짝 키워주기 */
+/* 큰 화면에서는 조금 더 키움 */
 const LargeUp = styled.div`
     @media (min-width: 480px) {
-<<<<<<< Updated upstream
         ${PageContainer} {
-            padding: 3rem 2rem 6rem;
+            padding: 3rem 2.4rem 7rem;
         }
         ${Greeting} {
-            font-size: 1.6rem;
+            font-size: 1.8rem;
         }
         ${Card} {
-            padding: 1.8rem;
+            padding: 2rem;
         }
         ${CardTitle} {
-            font-size: 1.2rem;
+            font-size: 1.4rem;
         }
         ${CardDesc} {
-            font-size: 1.2rem;
+            font-size: 1.35rem;
         }
         ${InfoLabel} {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
         }
         ${InfoValue} {
-            font-size: 1.2rem;
+            font-size: 1.35rem;
         }
         ${SubSectionTitle} {
-            font-size: 1.2rem;
-        }
-        ${LinkText} {
-            font-size: 1.2rem;
-        }
-        ${LogoutButton} {
-            height: 3.5rem;
             font-size: 1.3rem;
         }
-=======
-        ${PageContainer} { padding: 3rem 2rem 6rem; }
-        ${Greeting} { font-size: 1.6rem; }
-        ${Card} { padding: 1.8rem; }
-        ${CardTitle} { font-size: 1.2rem; }
-        ${CardDesc} { font-size: 1.2rem; }
-        ${InfoLabel} { font-size: 1.1rem; }
-        ${InfoValue} { font-size: 1.2rem; }
-        ${SubSectionTitle} { font-size: 1.2rem; }
-        ${LinkText} { font-size: 1.2rem; }
-        ${LogoutButton} { height: 3.5rem; font-size: 1.3rem; }
->>>>>>> Stashed changes
+        ${LinkText} {
+            font-size: 1.25rem;
+        }
+        ${LogoutButton} {
+            height: 4rem;
+            font-size: 1.4rem;
+        }
     }
 `;
 
@@ -211,7 +195,7 @@ const MyPage = () => {
                     </ProfilePanel>
 
                     <SubSectionTitle>나의 정책 관리</SubSectionTitle>
-                    <LinkText>관심 정책 목록</LinkText>
+                    <LinkText onClick={() => navigate('/favorites')}>관심 정책 목록</LinkText>
                 </Card>
 
                 <LogoutButton onClick={handleLogout}>로그아웃</LogoutButton>
