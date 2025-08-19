@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
-// 컨테이너
+
 const SocioContainer = styled.div`
     display: flex;
     flex-direction: column;
@@ -11,7 +11,7 @@ const SocioContainer = styled.div`
     padding: 0 20px;
 `;
 
-// 진행률 표시줄
+
 const ProgressBar = styled.div`
     width: 100%;
     height: 4px;
@@ -29,7 +29,7 @@ const ProgressFill = styled.div`
     transition: width 0.3s ease;
 `;
 
-// 메인 콘텐츠
+
 const SocioContent = styled.div`
     flex: 1;
     display: flex;
@@ -38,7 +38,7 @@ const SocioContent = styled.div`
     justify-content: center;
 `;
 
-// 제목
+
 const SocioTitle = styled.h1`
     font-size: 24px;
     font-weight: 700;
@@ -48,12 +48,12 @@ const SocioTitle = styled.h1`
     text-align: center;
 `;
 
-// 섹션 컨테이너
+
 const SectionContainer = styled.div`
     margin-bottom: 40px;
 `;
 
-// 섹션 제목
+
 const SectionTitle = styled.h2`
     font-size: 18px;
     font-weight: 600;
@@ -61,7 +61,7 @@ const SectionTitle = styled.h2`
     margin-bottom: 16px;
 `;
 
-// 연소득 입력 컨테이너
+
 const IncomeContainer = styled.div`
     display: flex;
     align-items: center;
@@ -95,7 +95,7 @@ const IncomeText = styled.span`
     white-space: nowrap;
 `;
 
-// 학력 버튼 그리드
+
 const EducationGrid = styled.div`
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -120,13 +120,12 @@ const EducationButton = styled.button`
         background-color: ${(props) => (props.selected ? 'var(--mainBlue)' : '#f8f9ff')};
     }
 
-    /* 마지막 두 버튼은 한 줄에 하나씩 */
     &:nth-last-child(-n + 2) {
         grid-column: span 1;
     }
 `;
 
-// 하단 네비게이션
+
 const NavigationContainer = styled.div`
     display: flex;
     justify-content: space-between;
@@ -148,7 +147,7 @@ const NavigationButton = styled.button`
     }
 `;
 
-// 다음 버튼
+
 const NextButton = styled.button`
     width: 100%;
     height: 56px;
@@ -208,17 +207,17 @@ const SocioEconomicInfo = () => {
 
     return (
         <SocioContainer>
-            {/* 진행률 표시줄 */}
+  
             <ProgressBar>
                 <ProgressFill />
             </ProgressBar>
 
-            {/* 메인 콘텐츠 */}
+ 
             <SocioContent>
-                {/* 제목 */}
+
                 <SocioTitle>김자립님께 맞춤 추천을 드리기 위해 몇 가지 정보가 더 필요해요!</SocioTitle>
 
-                {/* 연소득 섹션 */}
+
                 <SectionContainer>
                     <SectionTitle>연소득</SectionTitle>
                     <IncomeContainer>
@@ -245,7 +244,6 @@ const SocioEconomicInfo = () => {
                     </IncomeContainer>
                 </SectionContainer>
 
-                {/* 학력 섹션 */}
                 <SectionContainer>
                     <SectionTitle>학력</SectionTitle>
                     <EducationGrid>
@@ -262,13 +260,13 @@ const SocioEconomicInfo = () => {
                 </SectionContainer>
             </SocioContent>
 
-            {/* 하단 네비게이션 */}
+
             <NavigationContainer>
                 <NavigationButton onClick={handlePrevious}>&lt; 이전단계</NavigationButton>
                 <NavigationButton onClick={handleSkip}>건너뛰기 &gt;</NavigationButton>
             </NavigationContainer>
 
-            {/* 다음 버튼 */}
+
             <NextButton onClick={handleNext} disabled={!isFormValid}>
                 다음
             </NextButton>

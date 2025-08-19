@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
-// 컨테이너
 const ProfileContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -11,7 +10,7 @@ const ProfileContainer = styled.div`
   padding: 0 20px;
 `;
 
-// 진행률 표시줄
+
 const ProgressBar = styled.div`
   width: 100%;
   height: 4px;
@@ -29,7 +28,7 @@ const ProgressFill = styled.div`
   transition: width 0.3s ease;
 `;
 
-// 메인 콘텐츠
+
 const ProfileContent = styled.div`
   flex: 1;
   display: flex;
@@ -38,7 +37,7 @@ const ProfileContent = styled.div`
   justify-content: center;
 `;
 
-// 제목
+
 const ProfileTitle = styled.h1`
   font-size: 24px;
   font-weight: 700;
@@ -48,12 +47,11 @@ const ProfileTitle = styled.h1`
   text-align: center;
 `;
 
-// 입력 필드 컨테이너
 const InputContainer = styled.div`
   margin-bottom: 40px;
 `;
 
-// 라벨
+
 const InputLabel = styled.label`
   display: block;
   font-size: 16px;
@@ -62,7 +60,7 @@ const InputLabel = styled.label`
   margin-bottom: 16px;
 `;
 
-// 드롭다운
+
 const Dropdown = styled.select`
   width: 100%;
   height: 56px;
@@ -85,7 +83,6 @@ const Dropdown = styled.select`
   }
 `;
 
-// 연령 입력 컨테이너
 const AgeInputContainer = styled.div`
   display: flex;
   align-items: center;
@@ -120,7 +117,7 @@ const AgeText = styled.span`
   white-space: nowrap;
 `;
 
-// 혼인여부 버튼들
+
 const MaritalButtonContainer = styled.div`
   display: flex;
   gap: 12px;
@@ -145,7 +142,7 @@ const MaritalButton = styled.button`
   }
 `;
 
-// 하단 네비게이션
+
 const NavigationContainer = styled.div`
   display: flex;
   justify-content: space-between;
@@ -167,7 +164,6 @@ const NavigationButton = styled.button`
   }
 `;
 
-// 다음 버튼
 const NextButton = styled.button`
   width: 100%;
   height: 56px;
@@ -212,6 +208,7 @@ const ProfileInfo = () => {
 
   const isFormValid = area && age && maritalStatus;
 
+<<<<<<< Updated upstream
   return (
     <ProfileContainer>
       {/* 진행률 표시줄 */}
@@ -295,6 +292,94 @@ const ProfileInfo = () => {
       </NextButton>
     </ProfileContainer>
   );
+=======
+    return (
+        <ProfileContainer>
+
+            <ProgressBar>
+                <ProgressFill />
+            </ProgressBar>
+
+
+            <ProfileContent>
+
+                <ProfileTitle>김자립님을 위한 ai 맞춤 정책을 추천해드릴게요</ProfileTitle>
+
+
+                <InputContainer>
+                    <InputLabel>관심지역</InputLabel>
+                    <Dropdown value={area} onChange={(e) => setArea(e.target.value)}>
+                        <option value="">지역을 선택하세요</option>
+                        <option value="seoul">서울특별시</option>
+                        <option value="gyeonggi">경기도</option>
+                        <option value="busan">부산광역시</option>
+                        <option value="daegu">대구광역시</option>
+                        <option value="incheon">인천광역시</option>
+                        <option value="gwangju">광주광역시</option>
+                        <option value="daejeon">대전광역시</option>
+                        <option value="ulsan">울산광역시</option>
+                        <option value="sejong">세종특별자치도</option>
+                        <option value="chungbuk">충청북도</option>
+                        <option value="chungnam">충청남도</option>
+                        <option value="jeonnam">전라남도</option>
+                        <option value="gyeongbuk">경상북도</option>
+                        <option value="gyeongnam">경상남도</option>
+                        <option value="gangwon">강원특별자치도</option>
+                        <option value="jeonbuk">전북특별자치도</option>
+                        <option value="jeju">제주특별자치도</option>
+                    </Dropdown>
+                </InputContainer>
+
+
+                <InputContainer>
+                    <InputLabel>연령</InputLabel>
+                    <AgeInputContainer>
+                        <AgeText>만</AgeText>
+                        <AgeInput
+                            type="number"
+                            placeholder="나이를 입력하세요"
+                            value={age}
+                            onChange={(e) => setAge(e.target.value)}
+                            min="1"
+                            max="120"
+                        />
+                        <AgeText>세</AgeText>
+                    </AgeInputContainer>
+                </InputContainer>
+
+
+                <InputContainer>
+                    <InputLabel>혼인여부</InputLabel>
+                    <MaritalButtonContainer>
+                        <MaritalButton selected={maritalStatus === 'single'} onClick={() => setMaritalStatus('single')}>
+                            미혼
+                        </MaritalButton>
+                        <MaritalButton
+                            selected={maritalStatus === 'married'}
+                            onClick={() => setMaritalStatus('married')}
+                        >
+                            기혼
+                        </MaritalButton>
+                        <MaritalButton selected={maritalStatus === 'other'} onClick={() => setMaritalStatus('other')}>
+                            기타
+                        </MaritalButton>
+                    </MaritalButtonContainer>
+                </InputContainer>
+            </ProfileContent>
+
+
+            <NavigationContainer>
+                <NavigationButton onClick={handlePrevious}>&lt; 이전단계</NavigationButton>
+                <NavigationButton onClick={handleSkip}>건너뛰기 &gt;</NavigationButton>
+            </NavigationContainer>
+
+
+            <NextButton onClick={handleNext} disabled={!isFormValid}>
+                다음
+            </NextButton>
+        </ProfileContainer>
+    );
+>>>>>>> Stashed changes
 };
 
 export default ProfileInfo;

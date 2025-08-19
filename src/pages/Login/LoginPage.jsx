@@ -67,7 +67,7 @@ const LoginPage = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // 로그인 성공 시 온보딩으로 이동
+ 
         navigate('/onboarding');
     };
 

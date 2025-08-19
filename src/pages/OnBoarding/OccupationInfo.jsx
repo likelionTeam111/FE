@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
-// 컨테이너
 const OccupationContainer = styled.div`
     display: flex;
     flex-direction: column;
@@ -11,7 +10,6 @@ const OccupationContainer = styled.div`
     padding: 0 20px;
 `;
 
-// 진행률 표시줄
 const ProgressBar = styled.div`
     width: 100%;
     height: 4px;
@@ -29,7 +27,6 @@ const ProgressFill = styled.div`
     transition: width 0.3s ease;
 `;
 
-// 메인 콘텐츠
 const OccupationContent = styled.div`
     flex: 1;
     display: flex;
@@ -39,7 +36,6 @@ const OccupationContent = styled.div`
     justify-content: flex-start;
 `;
 
-// 제목
 const OccupationTitle = styled.h1`
     font-size: 24px;
     font-weight: 700;
@@ -49,12 +45,10 @@ const OccupationTitle = styled.h1`
     text-align: center;
 `;
 
-// 섹션 컨테이너
 const SectionContainer = styled.div`
     margin-bottom: 40px;
 `;
 
-// 섹션 제목 컨테이너
 const SectionTitleContainer = styled.div`
     display: flex;
     align-items: center;
@@ -62,20 +56,17 @@ const SectionTitleContainer = styled.div`
     margin-bottom: 16px;
 `;
 
-// 섹션 제목
 const SectionTitle = styled.h2`
     font-size: 18px;
     font-weight: 600;
     color: var(--mainBlue);
 `;
 
-// 중복선택 안내 텍스트
 const MultiSelectText = styled.span`
     font-size: 12px;
     color: #666;
 `;
 
-// 버튼 그리드
 const ButtonGrid = styled.div`
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -100,7 +91,6 @@ const OptionButton = styled.button`
     }
 `;
 
-// 하단 네비게이션
 const NavigationContainer = styled.div`
     display: flex;
     justify-content: space-between;
@@ -122,7 +112,6 @@ const NavigationButton = styled.button`
     }
 `;
 
-// 다음 버튼
 const NextButton = styled.button`
     width: 100%;
     height: 56px;
@@ -165,12 +154,10 @@ const OccupationInfo = () => {
         navigate('/onboarding/extra-info');
     };
 
-    // 취업상태 선택 (단일 선택)
     const handleEmploymentStatus = (status) => {
         setEmploymentStatus(status);
     };
 
-    // 전공 분야 선택 (다중 선택)
     const handleMajorField = (field) => {
         if (field === '제한 없음') {
             setMajorFields(['제한 없음']);
@@ -187,7 +174,6 @@ const OccupationInfo = () => {
         }
     };
 
-    // 특화 분야 선택 (다중 선택)
     const handleSpecializedField = (field) => {
         if (field === '제한 없음') {
             setSpecializedFields(['제한 없음']);
@@ -246,17 +232,16 @@ const OccupationInfo = () => {
 
     return (
         <OccupationContainer>
-            {/* 진행률 표시줄 */}
+
             <ProgressBar>
                 <ProgressFill />
             </ProgressBar>
 
-            {/* 메인 콘텐츠 */}
+
             <OccupationContent>
-                {/* 제목 */}
+
                 <OccupationTitle>AI가 숨겨진 지원금까지 찾아낼 수 있도록, 검색 범위를 좁혀주세요.</OccupationTitle>
 
-                {/* 취업상태 섹션 */}
                 <SectionContainer>
                     <SectionTitle>취업상태</SectionTitle>
                     <ButtonGrid>
@@ -272,7 +257,7 @@ const OccupationInfo = () => {
                     </ButtonGrid>
                 </SectionContainer>
 
-                {/* 전공 분야 섹션 */}
+
                 <SectionContainer>
                     <SectionTitleContainer>
                         <SectionTitle>전공 분야</SectionTitle>
@@ -291,7 +276,6 @@ const OccupationInfo = () => {
                     </ButtonGrid>
                 </SectionContainer>
 
-                {/* 특화 분야 섹션 */}
                 <SectionContainer>
                     <SectionTitleContainer>
                         <SectionTitle>특화 분야</SectionTitle>
@@ -311,13 +295,12 @@ const OccupationInfo = () => {
                 </SectionContainer>
             </OccupationContent>
 
-            {/* 하단 네비게이션 */}
+
             <NavigationContainer>
                 <NavigationButton onClick={handlePrevious}>&lt; 이전단계</NavigationButton>
                 <NavigationButton onClick={handleSkip}>건너뛰기 &gt;</NavigationButton>
             </NavigationContainer>
 
-            {/* 다음 버튼 */}
             <NextButton onClick={handleNext} disabled={!isFormValid}>
                 다음
             </NextButton>

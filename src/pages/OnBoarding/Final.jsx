@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled, { keyframes } from 'styled-components';
 
-// 페이드인 애니메이션
 const fadeIn = keyframes`
     from {
         opacity: 0;
@@ -14,7 +13,6 @@ const fadeIn = keyframes`
     }
 `;
 
-// 컨테이너
 const FinalContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -23,7 +21,6 @@ const FinalContainer = styled.div`
   padding: 0 20px;
 `;
 
-// 진행률 표시줄
 const ProgressBar = styled.div`
   width: 100%;
   height: 4px;
@@ -41,7 +38,6 @@ const ProgressFill = styled.div`
   transition: width 0.3s ease;
 `;
 
-// 메인 콘텐츠
 const FinalContent = styled.div`
   flex: 1;
   display: flex;
@@ -52,7 +48,6 @@ const FinalContent = styled.div`
   padding: 40px 0;
 `;
 
-// 메인 제목
 const MainTitle = styled.h1`
   font-size: 24px;
   font-weight: 700;
@@ -63,7 +58,6 @@ const MainTitle = styled.h1`
   animation-delay: 0s;
 `;
 
-// 로딩 텍스트 컨테이너
 const LoadingTextContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -71,7 +65,6 @@ const LoadingTextContainer = styled.div`
   margin-bottom: 40px;
 `;
 
-// 로딩 텍스트
 const LoadingText = styled.p`
   font-size: 16px;
   color: ${(props) => (props.$isActive ? '#333' : '#999')};
@@ -83,7 +76,6 @@ const LoadingText = styled.p`
   transition: color 0.3s ease, font-weight 0.3s ease;
 `;
 
-// 로딩 완료 메시지
 const CompletionMessage = styled.div`
   font-size: 18px;
   font-weight: 600;
@@ -99,6 +91,7 @@ const Final = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [currentStep, setCurrentStep] = useState(0);
 
+<<<<<<< Updated upstream
   useEffect(() => {
     // 메인 제목이 먼저 나타나고, 그 다음에 로딩 텍스트들이 순차적으로 나타남
     const mainTitleTimer = setTimeout(() => {
@@ -125,6 +118,34 @@ const Final = () => {
         clearTimeout(completionTimer);
       };
     }, 2000); // 메인 제목이 2초 동안 먼저 표시됨
+=======
+    useEffect(() => {
+        const mainTitleTimer = setTimeout(() => {
+            const stepTimers = [];
+
+            for (let i = 0; i < 4; i++) {
+                const timer = setTimeout(() => {
+                    setCurrentStep(i);
+                }, (i + 1) * 2000); 
+                stepTimers.push(timer);
+            }
+
+            const completionTimer = setTimeout(() => {
+                setIsLoading(false);
+                setTimeout(() => {
+                    navigate('/main');
+                }, 1500); 
+            }, 10000);
+
+            return () => {
+                stepTimers.forEach((timer) => clearTimeout(timer));
+                clearTimeout(completionTimer);
+            };
+        }, 2000); 
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
 
     return () => clearTimeout(mainTitleTimer);
   }, [navigate]);
@@ -136,6 +157,7 @@ const Final = () => {
     '가장 좋은 정책들을 선별하고 있어요.. 잠시만요!',
   ];
 
+<<<<<<< Updated upstream
   return (
     <FinalContainer>
       {/* 진행률 표시줄 */}
@@ -162,6 +184,36 @@ const Final = () => {
       </FinalContent>
     </FinalContainer>
   );
+=======
+    return (
+        <FinalContainer>
+
+            <ProgressBar>
+                <ProgressFill />
+            </ProgressBar>
+
+            <FinalContent>
+                <MainTitle>김자립님을 위한 정책 탐색 중!</MainTitle>
+
+                <LoadingTextContainer>
+                    {loadingSteps.map((text, index) => (
+                        <LoadingText
+                            key={index}
+                            delay={0}
+                            isVisible={index <= currentStep}
+                            isActive={index === currentStep}
+                        >
+                            {text}
+                        </LoadingText>
+                    ))}
+                </LoadingTextContainer>
+
+
+                {!isLoading && <CompletionMessage>정책 탐색 완료! 🎉</CompletionMessage>}
+            </FinalContent>
+        </FinalContainer>
+    );
+>>>>>>> Stashed changes
 };
 
 export default Final;

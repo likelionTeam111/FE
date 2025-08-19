@@ -27,7 +27,6 @@ const ProgressFill = styled.div`
     transition: width 0.3s ease;
 `;
 
-// 메인 콘텐츠
 const ExtraContent = styled.div`
     flex: 1;
     display: flex;
@@ -36,7 +35,7 @@ const ExtraContent = styled.div`
     justify-content: center;
 `;
 
-// 제목
+
 const ExtraTitle = styled.h1`
     font-size: 24px;
     font-weight: 700;
@@ -46,7 +45,7 @@ const ExtraTitle = styled.h1`
     text-align: center;
 `;
 
-// 예시 텍스트 컨테이너
+
 const ExampleContainer = styled.div`
     margin-bottom: 40px;
 `;
@@ -67,7 +66,7 @@ const ExampleText = styled.p`
     margin-bottom: 8px;
 `;
 
-// 입력 필드
+
 const InputField = styled.textarea`
     width: 100%;
     min-height: 120px;
@@ -91,7 +90,7 @@ const InputField = styled.textarea`
     }
 `;
 
-// 하단 네비게이션
+
 const NavigationContainer = styled.div`
     display: flex;
     justify-content: space-between;
@@ -113,7 +112,7 @@ const NavigationButton = styled.button`
     }
 `;
 
-// 다음 버튼
+
 const NextButton = styled.button`
     width: 100%;
     height: 56px;
@@ -156,14 +155,11 @@ const ExtraInfo = () => {
 
     return (
         <ExtraContainer>
-            {/* 진행률 표시줄 */}
             <ProgressBar>
                 <ProgressFill />
             </ProgressBar>
 
-            {/* 메인 콘텐츠 */}
             <ExtraContent>
-                {/* 제목 */}
                 <ExtraTitle>
                     마지막으로,
                     <br />
@@ -172,14 +168,12 @@ const ExtraInfo = () => {
                     AI가 놓치는 정보가 없도록 도와주세요!
                 </ExtraTitle>
 
-                {/* 예시 텍스트 */}
                 <ExampleContainer>
                     <ExampleTitle>이런 상황이라면 꼭 알려주세요!</ExampleTitle>
                     <ExampleText>ex. 곧 이직/퇴사 예정이에요,</ExampleText>
                     <ExampleText>프리랜서라 소득이 불규칙해요..</ExampleText>
                 </ExampleContainer>
 
-                {/* 입력 필드 */}
                 <InputField
                     placeholder="직접 입력해주세요."
                     value={additionalInfo}
@@ -187,13 +181,11 @@ const ExtraInfo = () => {
                 />
             </ExtraContent>
 
-            {/* 하단 네비게이션 */}
             <NavigationContainer>
                 <NavigationButton onClick={handlePrevious}>&lt; 이전단계</NavigationButton>
                 <NavigationButton onClick={handleSkip}>건너뛰기 &gt;</NavigationButton>
             </NavigationContainer>
 
-            {/* 다음 버튼 */}
             <NextButton onClick={handleNext}>다음</NextButton>
         </ExtraContainer>
     );

@@ -67,7 +67,6 @@ const SignUpPage = () => {
 
     const handleSignUp = (e) => {
         e.preventDefault();
-        // 회원가입 성공 시 온보딩으로 이동
         navigate('/onboarding');
     };
 
