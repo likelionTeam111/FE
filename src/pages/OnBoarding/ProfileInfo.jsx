@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+
+//스토어
+import { useInfoStore } from '../../store/useInfoStore';
 
 // 컨테이너
 const ProfileContainer = styled.div`
@@ -194,12 +196,15 @@ const NextButton = styled.button`
 
 const ProfileInfo = () => {
   const navigate = useNavigate();
-  const [area, setArea] = useState('');
-  const [age, setAge] = useState('');
-  const [maritalStatus, setMaritalStatus] = useState('');
+  const { info, setInfo } = useInfoStore();
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setInfo(name, value);
+  };
 
   const handlePrevious = () => {
-    navigate('/');
+    navigate(-1);
   };
 
   const handleSkip = () => {
@@ -209,8 +214,6 @@ const ProfileInfo = () => {
   const handleNext = () => {
     navigate('/onboarding/socio-economic-info');
   };
-
-  const isFormValid = area && age && maritalStatus;
 
   return (
     <ProfileContainer>
@@ -227,25 +230,25 @@ const ProfileInfo = () => {
         {/* 관심지역 입력 */}
         <InputContainer>
           <InputLabel>관심지역</InputLabel>
-          <Dropdown value={area} onChange={(e) => setArea(e.target.value)}>
+          <Dropdown name="region" onChange={handleChange}>
             <option value="">지역을 선택하세요</option>
-            <option value="seoul">서울특별시</option>
-            <option value="gyeonggi">경기도</option>
-            <option value="busan">부산광역시</option>
-            <option value="daegu">대구광역시</option>
-            <option value="incheon">인천광역시</option>
-            <option value="gwangju">광주광역시</option>
-            <option value="daejeon">대전광역시</option>
-            <option value="ulsan">울산광역시</option>
-            <option value="sejong">세종특별자치도</option>
-            <option value="chungbuk">충청북도</option>
-            <option value="chungnam">충청남도</option>
-            <option value="jeonnam">전라남도</option>
-            <option value="gyeongbuk">경상북도</option>
-            <option value="gyeongnam">경상남도</option>
-            <option value="gangwon">강원특별자치도</option>
-            <option value="jeonbuk">전북특별자치도</option>
-            <option value="jeju">제주특별자치도</option>
+            <option value="서울특별시">서울특별시</option>
+            <option value="경기도">경기도</option>
+            <option value="부산광역시">부산광역시</option>
+            <option value="대구광역시">대구광역시</option>
+            <option value="인천광역시">인천광역시</option>
+            <option value="광주광역시">광주광역시</option>
+            <option value="대전광역시">대전광역시</option>
+            <option value="울산광역시">울산광역시</option>
+            <option value="세종특별자치도">세종특별자치도</option>
+            <option value="충청북도">충청북도</option>
+            <option value="충청남도">충청남도</option>
+            <option value="전라남도">전라남도</option>
+            <option value="경상북도">경상북도</option>
+            <option value="경상남도">경상남도</option>
+            <option value="강원특별자치도">강원특별자치도</option>
+            <option value="전북특별자치도">전북특별자치도</option>
+            <option value="제주특별자치도">제주특별자치도</option>
           </Dropdown>
         </InputContainer>
 
@@ -256,9 +259,9 @@ const ProfileInfo = () => {
             <AgeText>만</AgeText>
             <AgeInput
               type="number"
+              name="age"
               placeholder="나이를 입력하세요"
-              value={age}
-              onChange={(e) => setAge(e.target.value)}
+              onChange={handleChange}
               min="1"
               max="120"
             />
@@ -270,13 +273,26 @@ const ProfileInfo = () => {
         <InputContainer>
           <InputLabel>혼인여부</InputLabel>
           <MaritalButtonContainer>
-            <MaritalButton selected={maritalStatus === 'single'} onClick={() => setMaritalStatus('single')}>
+            <MaritalButton
+              data-name="marry"
+              data-value="single"
+              selected={info.marry === 'single'}
+              onClick={() => setInfo('marry', 'single')}>
               미혼
             </MaritalButton>
-            <MaritalButton selected={maritalStatus === 'married'} onClick={() => setMaritalStatus('married')}>
+            <MaritalButton
+              data-name="marry"
+              data-value="married"
+              selected={info.marry === 'married'}
+              onClick={() => setInfo('marry', 'married')}>
               기혼
             </MaritalButton>
-            <MaritalButton selected={maritalStatus === 'other'} onClick={() => setMaritalStatus('other')}>
+
+            <MaritalButton
+              data-name="marry"
+              data-value="other"
+              selected={info.marry === 'other'}
+              onClick={() => setInfo('marry', 'other')}>
               기타
             </MaritalButton>
           </MaritalButtonContainer>
@@ -290,9 +306,7 @@ const ProfileInfo = () => {
       </NavigationContainer>
 
       {/* 다음 버튼 */}
-      <NextButton onClick={handleNext} $disabled={!isFormValid}>
-        다음
-      </NextButton>
+      <NextButton onClick={handleNext}>다음</NextButton>
     </ProfileContainer>
   );
 };

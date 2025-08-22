@@ -116,7 +116,7 @@ const Final = () => {
       const completionTimer = setTimeout(() => {
         setIsLoading(false);
         setTimeout(() => {
-          navigate('/main');
+          navigate('/');
         }, 1500); // 완료 메시지 표시 후 1.5초 뒤 이동
       }, 10000);
 
