@@ -24,14 +24,11 @@ const Footer = () => {
   return (
     <>
       <Container>
-        <Link to="/">
-          <NavText>홈</NavText>
-        </Link>
-        <Link to="/search">
-          <NavText>탐색</NavText>
-        </Link>
         <Link to="/chatbot">
           <NavText>AI챗봇</NavText>
+        </Link>
+        <Link to="/">
+          <NavText>홈</NavText>
         </Link>
         <Link to="/my">
           <NavText>마이페이지</NavText>
