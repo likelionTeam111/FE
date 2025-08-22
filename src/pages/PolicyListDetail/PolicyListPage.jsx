@@ -14,10 +14,10 @@ const TitleWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 1vh;
+  gap: 0.7rem;
 `;
 const Title = styled.span`
-  font-size: 3rem;
+  font-size: 2.5rem;
   font-weight: bold;
 `;
 const Description = styled.span`
@@ -31,7 +31,7 @@ const PolicyCardWrapper = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  gap: 4rem;
+  gap: 2rem;
   padding-bottom: 7vh; // 푸터만큼 빼주기
 `;
 

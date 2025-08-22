@@ -192,7 +192,16 @@ const SocioEconomicInfo = () => {
   // 내 정보 저장
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setInfo(name, value);
+
+    // 문자열을 숫자로 변환 시도
+    const num = Number(value);
+
+    // value가 공백이 아니고, 숫자로 변환 가능하면 number로 저장
+    if (value !== '' && !isNaN(num)) {
+      setInfo(name, num);
+    } else {
+      setInfo(name, value);
+    }
   };
 
   const educationOptions = [

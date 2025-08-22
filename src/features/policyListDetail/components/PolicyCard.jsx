@@ -2,15 +2,17 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 const Container = styled.div`
-  height: 12rem;
+  height: 9rem;
   flex-shrink: 0;
-  width: 70%;
+  width: 80%;
   display: flex;
   flex-direction: column;
   background-color: var(--white);
   border: none;
   border-radius: 20px;
-  padding: 2rem;
+  padding: 1rem;
+  gap: 0.3rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
 `;
 
 const TitleWrapper = styled.div`
@@ -18,22 +20,22 @@ const TitleWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-left: 2rem;
-  padding-right: 2rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
 `;
 const Title = styled.span`
-  font-size: 2rem;
+  font-size: 1.7rem;
   font-weight: bold;
 `;
 const Button = styled.button`
-  font-size: 2rem;
+  font-size: 1.3rem;
   font-weight: bold;
   background-color: var(--whtie);
 `;
 const Keyword = styled.span`
-  padding-left: 2rem;
-  color: var(--grey);
-  font-size: 1.5rem;
+  padding-left: 1rem;
+  color: var(--buttonGrey);
+  font-size: 1rem;
 `;
 
 const KeywordWrapper = styled.div`
@@ -41,17 +43,17 @@ const KeywordWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  padding-left: 2rem;
+  padding-left: 1rem;
   gap: 1rem;
 `;
 const Category = styled.span`
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.3rem;
+  font-size: 1rem;
   border-radius: 9999px;
   border: solid var(--mainBlue);
-  padding: 0.5rem;
+  padding: 0.2rem;
   min-width: 5rem;
   background-color: var(--mainBlue);
   color: var(--white);

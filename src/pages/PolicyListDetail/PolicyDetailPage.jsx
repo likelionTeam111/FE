@@ -1,16 +1,18 @@
 import styled from 'styled-components';
 import likeImg from '../../assets/img/like.png';
+import ai from '../../assets/img/ai.png';
 import { useState } from 'react';
 
 const Container = styled.div`
   height: calc(100vh - 14vh);
   display: flex;
   flex-direction: column;
+  box-sizing: border-box;
 `;
 const TitleWrapper = styled.div`
   flex: 2;
   background-color: var(--mainBlue);
-  border-radius: 0 0 20px 20px;
+  border-radius: 0 0 30px 30px;
 
   display: flex;
   flex-direction: column;
@@ -22,7 +24,7 @@ const TitleBox = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  padding-left: 5vw;
+  padding-left: 3rem;
 `;
 const Title = styled.span`
   color: var(--white);
@@ -39,16 +41,18 @@ const ButtonBox = styled.div`
   flex: 1;
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: flex-start;
+  gap: 1rem;
+  padding-left: 3rem;
 `;
 
 const LikeButton = styled.button`
-  color: ${({ $like }) => ($like ? 'var(--white)' : ' var(--mainBlue)')};
-  background-color: ${({ $like }) => ($like ? 'var(--mainBlue)' : 'var(--mainSky)')};
-  width: 13rem;
+  color: ${({ $like }) => ($like ? 'var(--white)' : ' var(--black)')};
+  background-color: ${({ $like }) => ($like ? 'var(--grey)' : 'var(--mainSky)')};
+  width: 12rem;
   height: 3rem;
   border-radius: 20px;
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -59,9 +63,13 @@ const LikeImg = styled.img`
 `;
 
 const GoButton = styled.button`
-  width: 13rem;
+  width: 12rem;
   height: 3rem;
   border-radius: 20px;
+  font-size: 1.4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const MainWrapper = styled.div`
@@ -70,28 +78,24 @@ const MainWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1rem;
   padding: 1rem;
+  box-sizing: border-box;
+  gap: 2rem;
 `;
 
-const Box = styled.div`
-  width: 70%;
-  height: 12rem;
+const Section = styled.div`
+  width: 80%;
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
-`;
-const ToggleBox = styled.div`
-  width: 70%;
-  margin-bottom: 3rem;
+  gap: 0.7rem;
 `;
 
-const DetailToggle = styled.button`
+const BlueText = styled.div`
   height: 3rem;
   width: 100%;
   font-size: 1.5rem;
   color: var(--white);
-  background-color: ${({ $isOpen }) => ($isOpen ? 'var(--grey)' : 'var(--mainBlue)')};
+  background-color: var(--mainBlue);
   border-radius: 10px;
   display: flex;
   justify-content: space-between;
@@ -104,24 +108,40 @@ const Text = styled.span`
   padding-left: 1rem;
   font-size: 1.5rem;
   font-weight: bold;
-  color: var(--grey);
+  color: var(--buttonGrey);
 `;
 
-const Tog = styled.span`
-  font-size: 1rem;
-`;
 const Content = styled.div`
   font-size: 1.5rem;
-  border: solid var(--grey);
+  border: 1px solid var(--grey);
   border-radius: 10px;
   padding: 1rem;
   display: flex;
   gap: 8rem;
   align-items: center;
 `;
+const AiBox = styled.div`
+  display: flex;
+  gap: 1rem;
+`;
+const AiImg = styled.img`
+  width: 5rem;
+  height: 5rem;
+`;
+const AiButton = styled.button`
+  height: 5rem;
+  border-radius: 15px;
+  font-size: 1.4rem;
+  background-color: var(--mainSky);
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.08), 0 5px 5px rgba(0, 0, 0, 0.1);
+  padding: 0.7rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: left;
+`;
 
 const PolicyDetailPage = () => {
-  const [isOpen, setIsOpen] = useState(false);
   const [like, setLike] = useState(false);
   return (
     <Container>
@@ -136,52 +156,51 @@ const PolicyDetailPage = () => {
         <ButtonBox>
           <LikeButton $like={like} onClick={() => setLike(!like)}>
             <LikeImg src={likeImg} />
-            관심정책 {!like && '담기'}
+            {like && '담긴'} 관심정책 {!like && '담기'}
           </LikeButton>
-          <GoButton>신청하러 가기</GoButton>
+          <GoButton>📝신청하러 가기</GoButton>
         </ButtonBox>
       </TitleWrapper>
       <MainWrapper>
-        <Box>
+        <Section>
           <Text>AI 3줄 요약 💡 </Text>
           <Content>
             누가? 시험 준비하는 19-34세 미취업 청년 <br />
             무엇을? 자격증 응시료 최대 30만원 지원 <br />
             어떻게? 시험 접수 후 신청서/증빙 제출
           </Content>
-        </Box>
-        <ToggleBox>
-          <DetailToggle onClick={() => setIsOpen(!isOpen)} $isOpen={isOpen}>
-            정책 상세 보기<Tog> {isOpen ? '∧' : '∨'}</Tog>
-          </DetailToggle>
-          {isOpen && (
-            <Content>
-              ✅ 신청 자격 <br />
-              소득: 기준 없음
-              <br /> 기타: 미취업 청년 (고용보험 미가입자)
-              <br />
-              <br /> 💰 지원 내용
-              <br /> 한도: 1인 연간 최대 30만원
-              <br /> 대상: 국가기술자격법상 544개 자격증 <br />
-              🗓️ 신청 방법 및 기간
-              <br />
-              <br /> 기간: 2025.01.01 ~ 2025.12.10
-              <br /> 방법: 온라인 신청 (일자리지원사업 통합접수)
-              <br /> 문의: ☎️ 031-120-5948
-              <br />
-              <br /> 필요 서류
-              <br /> 자격증시험 응시 확인서, 결제 확인증
-            </Content>
-          )}
-        </ToggleBox>
-        <Box>
-          <Text>생생한 정책 후기</Text>
+        </Section>
+        <Section>
+          <BlueText>정책 상세 📝</BlueText>
           <Content>
-            👍 BEST <br />
-            "이것만은 꼭 알고 신청하세요!" "서류 준비할 때..."
-            <Text>[ 후기 전체보기 및 작성하기 →</Text>
+            ✅ 신청 자격 <br />
+            소득: 기준 없음
+            <br /> 기타: 미취업 청년 (고용보험 미가입자)
+            <br />
+            <br /> 💰 지원 내용
+            <br /> 한도: 1인 연간 최대 30만원
+            <br /> 대상: 국가기술자격법상 544개 자격증 <br />
+            🗓️ 신청 방법 및 기간
+            <br />
+            <br /> 기간: 2025.01.01 ~ 2025.12.10
+            <br /> 방법: 온라인 신청 (일자리지원사업 통합접수)
+            <br /> 문의: ☎️ 031-120-5948
+            <br />
+            <br /> 필요 서류
+            <br /> 자격증시험 응시 확인서, 결제 확인증
           </Content>
-        </Box>
+          <AiBox>
+            <AiImg src={ai} />
+            <AiButton>궁금한 점이 있으시면 저 AI 챗봇에게 편하게 물어보세요.</AiButton>
+          </AiBox>
+        </Section>
+        <Section>
+          <BlueText>신청 요건 ✅</BlueText>
+          <Content>
+            나이: 제한 없음 소득: ? 결혼 여부: ? 전공분야: 제한 없음 취업상태: 미취업자 학력: 제한없음 특화분야:
+            제한없음 기타: 본 연수과정 중 재직자 ..~
+          </Content>
+        </Section>
       </MainWrapper>
     </Container>
   );

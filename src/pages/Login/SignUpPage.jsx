@@ -93,6 +93,7 @@ const SignUpPage = () => {
       password2: checkedPassword,
       nickname: nickName,
     };
+    console.log(body);
     try {
       await registration(body);
       // 회원가입 성공 시 로그인 페이지로 이동

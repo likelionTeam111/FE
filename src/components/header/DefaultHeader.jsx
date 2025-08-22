@@ -45,7 +45,7 @@ const Header = () => {
   return (
     <Container $headerBg={headerBg}>
       {isHome ? (
-        <Logo>청년자립지원서비스</Logo>
+        <Logo>청년자립비서</Logo>
       ) : (
         <BackSpace $headerBg={headerBg} $buttonBg={buttonBg} onClick={() => navigate(-1)}>
           {'<'}

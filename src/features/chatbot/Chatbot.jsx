@@ -1,14 +1,18 @@
 import styled from 'styled-components';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 // 이미지
 import ai from '../../assets/img/ai.png';
 import send from '../../assets/img/send.png';
 
 // api
-// import { openAi } from '../../apis/openAi';
+import { chatApi } from '../../apis/api/chatBot';
+
+//스토어
+import { useChatStore } from '../../store/useChatStore';
 
 const Container = styled.div`
+  border-top: solid var(--white);
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -82,52 +86,62 @@ const SendBtn = styled.button`
 const Chatbot = () => {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
+  const bottomRef = useRef(null);
+
+  const { threadId, random, resetChat, setRandom, setThread_id } = useChatStore();
 
   //대화 기록 불러오기
   useEffect(() => {
-    const saved = localStorage.getItem('chat_message');
+    const saved = sessionStorage.getItem('chat_message');
     if (saved !== null) setMessages(JSON.parse(saved));
   }, []);
+  useEffect(() => {
+    bottomRef.current?.scrollIntoView({ behavior: 'smooth', block: 'end' });
+  }, [messages]);
 
   // 대화 초기화
   const handleReset = () => {
-    localStorage.removeItem('chat_message');
+    sessionStorage.removeItem('chat_message');
     setMessages([]);
+    resetChat();
   };
-  // //메시지 보내기
-  // const handeSend = async (e) => {
-  //   e.preventDefault();
+  //메시지 보내기
+  const handeSend = async (e) => {
+    e.preventDefault();
 
-  //   // 사용자 메시지
-  //   const useMsg = {
-  //     message: input,
-  //     direction: 'outgoing',
-  //   };
+    // 사용자 메시지
+    const useMsg = {
+      message: input,
+      direction: 'outgoing',
+    };
 
-  //   const userUpdated = [...messages, useMsg];
-  //   setMessages(userUpdated);
-  //   localStorage.setItem('chat_message', JSON.stringify(userUpdated));
+    const userUpdated = [...messages, useMsg];
+    setMessages(userUpdated);
+    sessionStorage.setItem('chat_message', JSON.stringify(userUpdated));
 
-  //   // 봇 메세지
-  //   const prompt = {
-  //     model: 'gpt-4o',
-  //     messages: [
-  //       { role: 'system', content: 'you are a helpful assistant' },
-  //       { role: 'user', content: input },
-  //     ],
-  //   };
-  //   const reply = await openAi(prompt);
-  //   setInput('');
+    // 봇 메세지
+    const prompt = {
+      message: input,
+      thread_id: threadId,
+    };
 
-  //   const BotMsg = {
-  //     message: reply,
-  //     direction: 'ingoing',
-  //   };
+    //대화를 처음 시작한다면
+    if (!random) {
+      const n = Math.floor(Math.random() * 5000) + 1;
+      setRandom(n);
+    }
+    setInput('');
+    const { answer, thread_id } = await chatApi(prompt, random);
+    setThread_id(thread_id);
 
-  //   const botUpdated = [...userUpdated, BotMsg];
-  //   setMessages(botUpdated);
-  //   localStorage.setItem('chat_message', JSON.stringify(botUpdated));
-  // };
+    const BotMsg = {
+      message: answer,
+      direction: 'ingoing',
+    };
+    const botUpdated = [...userUpdated, BotMsg];
+    setMessages(botUpdated);
+    sessionStorage.setItem('chat_message', JSON.stringify(botUpdated));
+  };
 
   return (
     <Container>
@@ -150,11 +164,12 @@ const Chatbot = () => {
             </MsseageBox>
           );
         })}
+        <div ref={bottomRef} />
       </MessageWrapper>
       <ResetBnt onClick={handleReset}>대화 새로 시작하기</ResetBnt>
 
-      <Form onSubmit={{}}>
-        <Input placeholder="무엇이든 물어보세요!" value={input} onChange={(e) => setInput(e.target.value)} />
+      <Form onSubmit={handeSend}>
+        <Input placeholder="무엇이든 물어보세요!" value={input} onChange={(e) => setInput(e.target.value)} required />
         <SendBtn type="submit">
           <img src={send} alt="send" />
         </SendBtn>

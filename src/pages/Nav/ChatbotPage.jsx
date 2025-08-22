@@ -25,10 +25,10 @@ const Container = styled.div`
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  gap: 3rem;
+  gap: 1rem;
 `;
 const Title = styled.span`
-  margin: auto;
+  margin: 0 auto;
   font-size: 2.2rem;
   color: var(--white);
 `;
@@ -37,7 +37,6 @@ const ChatbotPage = () => {
   return (
     <Container>
       <Bg />
-
       <Title>AI챗봇</Title>
       <Chatbot />
     </Container>

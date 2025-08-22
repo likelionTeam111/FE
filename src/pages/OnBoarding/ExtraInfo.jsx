@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { useInfoStore } from '../../store/useInfoStore';
 
 // api
-import { enroll } from '../../apis/api/enroll';
+import { enroll } from '../../apis/api/profile';
 
 const ExtraContainer = styled.div`
   display: flex;

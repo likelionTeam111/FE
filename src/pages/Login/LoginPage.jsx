@@ -4,7 +4,7 @@ import { useState } from 'react';
 
 // api
 import { login } from '../../apis/api/auth';
-
+import { myPage } from '../../apis/api/profile';
 // 스토어
 import { useAuthStore } from '../../store/useAuthStore';
 
@@ -98,7 +98,9 @@ const LoginPage = () => {
       applyLogin(access, refresh, nickname);
 
       alert('로그인 성공');
-      navigate('/onboarding');
+      const data = await myPage();
+      if (data.id) navigate('/');
+      else navigate('/onboarding');
     } catch (e) {
       console.error(e);
       alert('로그인 실패');

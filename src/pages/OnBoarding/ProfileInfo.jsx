@@ -200,7 +200,16 @@ const ProfileInfo = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setInfo(name, value);
+
+    // 문자열을 숫자로 변환 시도
+    const num = Number(value);
+
+    // value가 공백이 아니고, 숫자로 변환 가능하면 number로 저장
+    if (value !== '' && !isNaN(num)) {
+      setInfo(name, num);
+    } else {
+      setInfo(name, value);
+    }
   };
 
   const handlePrevious = () => {
@@ -275,24 +284,24 @@ const ProfileInfo = () => {
           <MaritalButtonContainer>
             <MaritalButton
               data-name="marry"
-              data-value="single"
-              selected={info.marry === 'single'}
-              onClick={() => setInfo('marry', 'single')}>
+              data-value="미혼"
+              selected={info.marry === '미혼'}
+              onClick={() => setInfo('marry', '미혼')}>
               미혼
             </MaritalButton>
             <MaritalButton
               data-name="marry"
-              data-value="married"
-              selected={info.marry === 'married'}
-              onClick={() => setInfo('marry', 'married')}>
+              data-value="기혼"
+              selected={info.marry === '기혼'}
+              onClick={() => setInfo('marry', '기혼')}>
               기혼
             </MaritalButton>
 
             <MaritalButton
               data-name="marry"
-              data-value="other"
-              selected={info.marry === 'other'}
-              onClick={() => setInfo('marry', 'other')}>
+              data-value="기타"
+              selected={info.marry === '기타'}
+              onClick={() => setInfo('marry', '기타')}>
               기타
             </MaritalButton>
           </MaritalButtonContainer>
