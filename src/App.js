@@ -4,7 +4,6 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Mainpage from './pages/Nav/Mainpage';
 import ChatbotPage from './pages/Nav/ChatbotPage';
 import MyPage from './pages/Nav/MyPage';
-import SearchPage from './pages/Nav/SearchPage';
 
 //PolicyListDetail 페이지
 import PolicyListPage from './pages/PolicyListDetail/PolicyListPage';
@@ -27,11 +26,14 @@ import Welcome from './pages/Onboarding/Welcome';
 import DefaultLayout from './layouts/DefaultLayout';
 import OnboardingLayout from './layouts/OnboardingLayout';
 
+// 라우터
+import ProtectedRoute from './routes/ProtectedRoute';
+
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<AuthPage />} />
+        <Route path="/auth" element={<AuthPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignUpPage />} />
 
@@ -43,14 +45,14 @@ function App() {
           <Route path="/onboarding/extra-info" element={<ExtraInfo />} />
           <Route path="/onboarding/final" element={<Final />} />
         </Route>
-
-        <Route element={<DefaultLayout />}>
-          <Route path="/main" element={<Mainpage />} />
-          <Route path="/my" element={<MyPage />} />
-          <Route path="/search" element={<SearchPage />} />
-          <Route path="/chatbot" element={<ChatbotPage />} />
-          <Route path="/policyList" element={<PolicyListPage />} />
-          <Route path="/policyDetail/:plcyNo" element={<PolicyDetailPage />} />
+        <Route element={<ProtectedRoute />}>
+          <Route element={<DefaultLayout />}>
+            <Route path="/" element={<Mainpage />} />
+            <Route path="/my" element={<MyPage />} />
+            <Route path="/chatbot" element={<ChatbotPage />} />
+            <Route path="/policyList" element={<PolicyListPage />} />
+            <Route path="/policyDetail/:plcyNo" element={<PolicyDetailPage />} />
+          </Route>
         </Route>
       </Routes>
     </BrowserRouter>

@@ -6,7 +6,7 @@ import ai from '../../assets/img/ai.png';
 import send from '../../assets/img/send.png';
 
 // api
-import { openAi } from '../../apis/openAi';
+// import { openAi } from '../../apis/openAi';
 
 const Container = styled.div`
   box-sizing: border-box;
@@ -94,40 +94,40 @@ const Chatbot = () => {
     localStorage.removeItem('chat_message');
     setMessages([]);
   };
-  //메시지 보내기
-  const handeSend = async (e) => {
-    e.preventDefault();
+  // //메시지 보내기
+  // const handeSend = async (e) => {
+  //   e.preventDefault();
 
-    // 사용자 메시지
-    const useMsg = {
-      message: input,
-      direction: 'outgoing',
-    };
+  //   // 사용자 메시지
+  //   const useMsg = {
+  //     message: input,
+  //     direction: 'outgoing',
+  //   };
 
-    const userUpdated = [...messages, useMsg];
-    setMessages(userUpdated);
-    localStorage.setItem('chat_message', JSON.stringify(userUpdated));
+  //   const userUpdated = [...messages, useMsg];
+  //   setMessages(userUpdated);
+  //   localStorage.setItem('chat_message', JSON.stringify(userUpdated));
 
-    // 봇 메세지
-    const prompt = {
-      model: 'gpt-4o',
-      messages: [
-        { role: 'system', content: 'you are a helpful assistant' },
-        { role: 'user', content: input },
-      ],
-    };
-    const reply = await openAi(prompt);
-    setInput('');
+  //   // 봇 메세지
+  //   const prompt = {
+  //     model: 'gpt-4o',
+  //     messages: [
+  //       { role: 'system', content: 'you are a helpful assistant' },
+  //       { role: 'user', content: input },
+  //     ],
+  //   };
+  //   const reply = await openAi(prompt);
+  //   setInput('');
 
-    const BotMsg = {
-      message: reply,
-      direction: 'ingoing',
-    };
+  //   const BotMsg = {
+  //     message: reply,
+  //     direction: 'ingoing',
+  //   };
 
-    const botUpdated = [...userUpdated, BotMsg];
-    setMessages(botUpdated);
-    localStorage.setItem('chat_message', JSON.stringify(botUpdated));
-  };
+  //   const botUpdated = [...userUpdated, BotMsg];
+  //   setMessages(botUpdated);
+  //   localStorage.setItem('chat_message', JSON.stringify(botUpdated));
+  // };
 
   return (
     <Container>
@@ -153,7 +153,7 @@ const Chatbot = () => {
       </MessageWrapper>
       <ResetBnt onClick={handleReset}>대화 새로 시작하기</ResetBnt>
 
-      <Form onSubmit={handeSend}>
+      <Form onSubmit={{}}>
         <Input placeholder="무엇이든 물어보세요!" value={input} onChange={(e) => setInput(e.target.value)} />
         <SendBtn type="submit">
           <img src={send} alt="send" />
