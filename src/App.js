@@ -15,12 +15,12 @@ import LoginPage from './pages/Login/LoginPage';
 import SignUpPage from './pages/Login/SignUpPage';
 
 //온보딩 페이지
-import ProfileInfo from './pages/Onboarding/ProfileInfo';
-import SocioEconomicInfo from './pages/Onboarding/SocioEconomicInfo';
-import OccupationInfo from './pages/Onboarding/OccupationInfo';
-import ExtraInfo from './pages/Onboarding/ExtraInfo';
-import Final from './pages/Onboarding/Final';
-import Welcome from './pages/Onboarding/Welcome';
+import ProfileInfo from './pages/OnBoarding/ProfileInfo';
+import SocioEconomicInfo from './pages/OnBoarding/SocioEconomicInfo';
+import OccupationInfo from './pages/OnBoarding/OccupationInfo';
+import ExtraInfo from './pages/OnBoarding/ExtraInfo';
+import Final from './pages/OnBoarding/Final';
+import Welcome from './pages/OnBoarding/Welcome';
 
 //레이아웃
 import DefaultLayout from './layouts/DefaultLayout';
