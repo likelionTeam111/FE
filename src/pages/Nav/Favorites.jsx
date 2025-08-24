@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import PixelLogo from '../../assets/img/pixelLogoBlue.png';
 
 const Page = styled.main`
     min-height: 100vh;
@@ -8,36 +9,6 @@ const Page = styled.main`
     padding: 0;
     padding-top: 6rem;
     padding-bottom: 8rem;
-`;
-
-const Header = styled.header`
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    padding: 1.5rem 2rem;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-    background: var(--white);
-`;
-
-const Back = styled.button`
-    background: transparent;
-    border: none;
-    font-size: 2rem;
-    color: var(--black);
-    cursor: pointer;
-    padding: 0.5rem;
-    transition: opacity 0.2s ease;
-
-    &:hover {
-        opacity: 0.7;
-    }
-`;
-
-const Title = styled.h1`
-    font-size: 1.8rem;
-    font-weight: 800;
-    color: var(--black);
-    margin: 0;
 `;
 
 const MainContent = styled.div`
@@ -127,18 +98,35 @@ const Empty = styled.div`
     text-align: center;
     width: 100%;
     max-width: 44rem;
+`;
 
-    &::after {
-        content: '';
-        position: absolute;
-        bottom: -2rem;
-        right: 1rem;
-        width: 220px;
-        height: 220px;
-        background: var(--mainSky);
-        opacity: 0.2;
-        pointer-events: none;
-        border-radius: 50%;
+const LogoImage = styled.img`
+    position: fixed;
+    bottom: 10rem;
+    right: 2rem;
+    width: 300px;
+    height: 300px;
+    opacity: 0.6;
+    pointer-events: none;
+    z-index: 1;
+    object-fit: contain;
+
+    @media (min-width: 768px) {
+        width: 400px;
+        height: 400px;
+        right: 3rem;
+    }
+
+    @media (min-width: 1024px) {
+        width: 500px;
+        height: 500px;
+        right: 4rem;
+    }
+
+    @media (min-width: 1440px) {
+        width: 600px;
+        height: 600px;
+        right: 5rem;
     }
 `;
 
@@ -166,17 +154,13 @@ const Favorites = () => {
 
     return (
         <Page>
-            <Header>
-                <Back onClick={() => navigate(-1)}>{'<'}</Back>
-                <Title>관심 정책 목록</Title>
-            </Header>
-
             <MainContent>
                 {favoritePolicies.length === 0 ? (
                     <Empty>
                         관심 정책이 아직 없어요
                         <br />
                         정책을 찾아보고 관심등록해보세요!
+                        <LogoImage src={PixelLogo} alt="픽셀 로고" />
                     </Empty>
                 ) : (
                     favoritePolicies.map((policy, idx) => (
