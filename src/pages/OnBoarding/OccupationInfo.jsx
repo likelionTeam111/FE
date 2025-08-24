@@ -60,6 +60,7 @@ const SectionTitle = styled.h2`
     font-size: 18px;
     font-weight: 600;
     color: var(--mainBlue);
+    margin-bottom: 16px;
 `;
 
 const MultiSelectText = styled.span`
@@ -232,14 +233,11 @@ const OccupationInfo = () => {
 
     return (
         <OccupationContainer>
-
             <ProgressBar>
                 <ProgressFill />
             </ProgressBar>
 
-
             <OccupationContent>
-
                 <OccupationTitle>AI가 숨겨진 지원금까지 찾아낼 수 있도록, 검색 범위를 좁혀주세요.</OccupationTitle>
 
                 <SectionContainer>
@@ -256,7 +254,6 @@ const OccupationInfo = () => {
                         ))}
                     </ButtonGrid>
                 </SectionContainer>
-
 
                 <SectionContainer>
                     <SectionTitleContainer>
@@ -294,7 +291,6 @@ const OccupationInfo = () => {
                     </ButtonGrid>
                 </SectionContainer>
             </OccupationContent>
-
 
             <NavigationContainer>
                 <NavigationButton onClick={handlePrevious}>&lt; 이전단계</NavigationButton>
