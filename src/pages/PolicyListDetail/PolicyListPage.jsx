@@ -1,5 +1,9 @@
 import styled from 'styled-components';
 import PolicyCard from '../../features/policyListDetail/components/PolicyCard';
+import { useState } from 'react';
+
+// api
+import { recommend } from '../../apis/api/recommend';
 
 const Container = styled.div`
   height: calc(100vh - 14vh);
@@ -35,47 +39,52 @@ const PolicyCardWrapper = styled.div`
   padding-bottom: 7vh; // 푸터만큼 빼주기
 `;
 
-const dummpy = [
-  {
-    'plcyNo': '20250806005400211515',
-    'plcyNm': '청년 일자리사업 참여청년 모집',
-    'plcyKywdNm': '인턴,장기미취업청년',
-    'lclsfNm': '일자리',
-    'mclsfNm': '취업',
-  },
-  {
-    'plcyNo': '202508060054002115',
-    'plcyNm': '서울 자취 월세 지원',
-    'plcyKywdNm': '인턴,장기미취업청년',
-    'lclsfNm': '복지',
-    'mclsfNm': '지원',
-  },
-  {
-    'plcyNo': '202508065400211515',
-    'plcyNm': '도서관 근로 봉사',
-    'plcyKywdNm': '인턴,장기미취업청년',
-    'lclsfNm': '일자리',
-    'mclsfNm': '취업',
-  },
-  {
-    'plcyNo': '20250805400211515',
-    'plcyKywdNm': '인턴,장기미취업청년',
-    'plcyNm': '재난지원금 신청',
-    'lclsfNm': '복지',
-    'mclsfNm': '지원',
-  },
-];
+const CategoryBox = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+`;
+const CategoryBtn = styled.button`
+  width: 6rem;
+  height: 3rem;
+  background-color: var(--mainBlue);
+  color: var(--white);
+`;
+
+const categories = ['일자리', '주거', '교육', '복지문화', '참여권리'];
 
 const PolicyListPage = () => {
+  const [policyList, setPolicyList] = useState([]);
+
+  const handleCategory = async (cat) => {
+    try {
+      const data = await recommend(cat);
+      setPolicyList(data);
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
   return (
     <Container>
       <TitleWrapper>
         <Title>AI 맞춤 정책 목록</Title>
         <Description>자립에게 도움이 될 만한 정책들을 모아봤어요.</Description>
+        <CategoryBox>
+          {categories.map((cat, idx) => {
+            return (
+              <CategoryBtn key={idx} onClick={() => handleCategory(cat)}>
+                {cat}
+              </CategoryBtn>
+            );
+          })}
+        </CategoryBox>
       </TitleWrapper>
+
       <PolicyCardWrapper>
-        {dummpy.map((policy) => {
-          return <PolicyCard key={policy.plcyNo} policy={policy} />;
+        {policyList?.map((policyInfo) => {
+          return <PolicyCard key={policyInfo.id} policyInfo={policyInfo} />;
         })}
       </PolicyCardWrapper>
     </Container>

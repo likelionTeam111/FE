@@ -1,7 +1,11 @@
 import styled from 'styled-components';
 import likeImg from '../../assets/img/like.png';
 import ai from '../../assets/img/ai.png';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+
+// api
+import { detailPolicy, addFavoritePolicy, deleteFavoritePolicy } from '../../apis/api/policy';
 
 const Container = styled.div`
   height: calc(100vh - 14vh);
@@ -30,7 +34,10 @@ const Title = styled.span`
   color: var(--white);
   font-size: 3rem;
   font-weight: bold;
-  max-width: 15rem; // 줄바꿈되도록 최대 길이 설정
+  display: inline-block;
+  white-space: pre-wrap; /* \n 유지 + 자동 줄바꿈 */
+  word-break: break-word; /* 긴 단어/URL도 줄바꿈 */
+  width: 80%;
 `;
 const Description = styled.span`
   color: var(--white);
@@ -119,6 +126,8 @@ const Content = styled.div`
   display: flex;
   gap: 8rem;
   align-items: center;
+  white-space: pre-wrap; /* \n 유지 + 자동 줄바꿈 */
+  word-break: break-word; /* 긴 단어/URL도 줄바꿈 */
 `;
 const AiBox = styled.div`
   display: flex;
@@ -143,51 +152,75 @@ const AiButton = styled.button`
 
 const PolicyDetailPage = () => {
   const [like, setLike] = useState(false);
+  const [plcyInfo, setplcyInfo] = useState({});
+  const { plcyNo } = useParams(); // string
+  const [isPending, setIsPending] = useState(false);
+
+  //좋아요
+  const handleLike = async () => {
+    if (isPending) return; // 연타 차단
+    setIsPending(true);
+    try {
+      if (like) {
+        const status = await deleteFavoritePolicy(plcyInfo.id);
+        if (status === 204) setLike(false);
+      } else {
+        const status = await addFavoritePolicy(plcyInfo.id);
+        if (status === 201) setLike(true);
+      }
+    } catch (e) {
+      console.error(e);
+    } finally {
+      setIsPending(false); // 응답 오면 다시 활성화
+    }
+  };
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const data = await detailPolicy(Number(plcyNo));
+        setplcyInfo(data);
+        setLike(data.is_favorited);
+      } catch (e) {
+        console.error(e);
+      }
+    })();
+  }, [plcyNo]);
+
   return (
     <Container>
       <TitleWrapper>
         <TitleBox>
-          <Title>청년자격증지원사업</Title>
-          <Description>
-            청년의 취업 역량 개발에 필요한 자격증 취득 비용 부담을 완화하기 위해, 연간 일정 한도 내에서 응시료를
-            지원하는 정책입니다.
-          </Description>
+          <Title>{plcyInfo.plcyNm}</Title>
+          <Description>{plcyInfo.plcyExplnCn}</Description>
         </TitleBox>
         <ButtonBox>
-          <LikeButton $like={like} onClick={() => setLike(!like)}>
+          <LikeButton $like={like} onClick={handleLike}>
             <LikeImg src={likeImg} />
             {like && '담긴'} 관심정책 {!like && '담기'}
           </LikeButton>
-          <GoButton>📝신청하러 가기</GoButton>
+          <GoButton onClick={() => window.open(`${plcyInfo.addr}`, '_blank')}>📝신청하러 가기</GoButton>
         </ButtonBox>
       </TitleWrapper>
       <MainWrapper>
         <Section>
           <Text>AI 3줄 요약 💡 </Text>
-          <Content>
-            누가? 시험 준비하는 19-34세 미취업 청년 <br />
-            무엇을? 자격증 응시료 최대 30만원 지원 <br />
-            어떻게? 시험 접수 후 신청서/증빙 제출
-          </Content>
+          <Content>{plcyInfo.aiSummary}</Content>
         </Section>
         <Section>
           <BlueText>정책 상세 📝</BlueText>
           <Content>
-            ✅ 신청 자격 <br />
-            소득: 기준 없음
-            <br /> 기타: 미취업 청년 (고용보험 미가입자)
+            사업 기간 : {plcyInfo.bizPrd}
             <br />
             <br /> 💰 지원 내용
-            <br /> 한도: 1인 연간 최대 30만원
-            <br /> 대상: 국가기술자격법상 544개 자격증 <br />
+            <br /> {plcyInfo.about_benefit}
+            <br />
+            <br />
             🗓️ 신청 방법 및 기간
-            <br />
-            <br /> 기간: 2025.01.01 ~ 2025.12.10
-            <br /> 방법: 온라인 신청 (일자리지원사업 통합접수)
-            <br /> 문의: ☎️ 031-120-5948
-            <br />
-            <br /> 필요 서류
-            <br /> 자격증시험 응시 확인서, 결제 확인증
+            <br /> 신청 기간: {plcyInfo.aplyYmd}
+            <br /> 제출 서류: {plcyInfo.sbsnDmtnCn}
+            <br /> 신청 방법: {plcyInfo.plcyAplyMthdCn}
+            <br /> 심사 방법: {plcyInfo.srngMthdCn}
           </Content>
           <AiBox>
             <AiImg src={ai} />
@@ -197,8 +230,17 @@ const PolicyDetailPage = () => {
         <Section>
           <BlueText>신청 요건 ✅</BlueText>
           <Content>
-            나이: 제한 없음 소득: ? 결혼 여부: ? 전공분야: 제한 없음 취업상태: 미취업자 학력: 제한없음 특화분야:
-            제한없음 기타: 본 연수과정 중 재직자 ..~
+            나이: {plcyInfo.ageLmt} <br />
+            소득: {plcyInfo.earnLmt}
+            <br />
+            결혼 여부: {plcyInfo.mrgSttsCd_display}
+            <br />
+            전공분야: {plcyInfo.plcyMajorCd_display} <br />
+            취업상태: {plcyInfo.jobCd_display}
+            <br />
+            학력: {plcyInfo.schoolCd_display} <br />
+            특화분야: {plcyInfo.sbizCd_display} <br />
+            기타: {plcyInfo.etc}
           </Content>
         </Section>
       </MainWrapper>

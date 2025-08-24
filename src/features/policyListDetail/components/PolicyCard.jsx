@@ -54,19 +54,20 @@ const Category = styled.span`
   border-radius: 9999px;
   border: solid var(--mainBlue);
   padding: 0.2rem;
-  min-width: 5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
   background-color: var(--mainBlue);
   color: var(--white);
 `;
 
-const PolicyCard = ({ policy }) => {
-  const { plcyNo, plcyKywdNm, plcyNm, lclsfNm, mclsfNm } = policy;
+const PolicyCard = ({ policyInfo }) => {
+  const { id, plcyKywdNm, plcyNm, lclsfNm, mclsfNm } = policyInfo;
 
   return (
     <Container>
       <TitleWrapper>
         <Title>{plcyNm}</Title>
-        <Link to={`/policyDetail/${plcyNo}`}>
+        <Link to={`/policyDetail/${id}`}>
           <Button>{'>'}</Button>
         </Link>
       </TitleWrapper>
