@@ -50,6 +50,7 @@ function App() {
                     <Route element={<DefaultLayout />}>
                         <Route path="/" element={<Mainpage />} />
                         <Route path="/my" element={<MyPage />} />
+                        <Route path="/favorites" element={<Favorites />} />
                         <Route path="/chatbot" element={<ChatbotPage />} />
                         <Route path="/policyList" element={<PolicyListPage />} />
                         <Route path="/policyDetail/:plcyNo" element={<PolicyDetailPage />} />

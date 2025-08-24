@@ -1,40 +1,65 @@
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
+import { useInfoStore } from '../../store/useInfoStore';
 
 const PageContainer = styled.main`
     background-color: var(--mainSky);
     min-height: 100vh;
-    padding: 2.4rem 2rem 7rem;
+    padding: 0;
+    padding-top: 6rem;
+    padding-bottom: 8rem;
 `;
 
-const Section = styled.section`
-    max-width: 44rem;
-    margin: 0 auto;
+const HeaderSection = styled.div`
+    background-color: var(--mainSky);
+    padding: 2rem 2rem 1.5rem;
+    text-align: left;
+    margin-bottom: 3rem;
 `;
 
 const Greeting = styled.p`
-    font-size: 1.6rem;
+    font-size: 2rem;
     color: var(--black);
-    margin-top: 1.2rem;
-    line-height: 1.7;
+    margin: 0;
+    line-height: 1.4;
+    max-width: 75%;
+    margin-left: 10%;
+    font-weight: 700;
+`;
+
+const ServiceDesc = styled.p`
+    font-size: 2.3rem;
+    font-weight: 700;
+    color: var(--black);
+    margin: 0;
+    line-height: 1.4;
+    max-width: 75%;
+    margin-left: 10%;
+`;
+
+const Section = styled.section`
+    max-width: 75%;
+    margin: 0 auto;
+    padding: 0 2rem;
 `;
 
 const Card = styled.div`
     margin-top: 2rem;
     background: var(--white);
     border-radius: 1.4rem;
-    padding: 1.8rem;
+    padding: 2rem;
     box-shadow: 0 0.6rem 1.6rem rgba(0, 0, 0, 0.08);
 `;
 
 const CardTitle = styled.h3`
-    font-size: 1.3rem;
+    font-size: 1.8rem;
     color: rgba(0, 0, 0, 0.6);
     font-weight: 800;
+    margin-bottom: 1rem;
 `;
 
 const CardDesc = styled.p`
-    font-size: 1.25rem;
+    font-size: 1.6rem;
     color: rgba(0, 0, 0, 0.75);
     margin-top: 0.8rem;
     line-height: 1.6;
@@ -45,55 +70,76 @@ const ProfilePanel = styled.div`
     background: var(--mainBlue);
     color: var(--white);
     border-radius: 1.2rem;
-    padding: 1.6rem;
+    padding: 2rem;
 `;
 
 const InfoGrid = styled.div`
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 0.8rem 1.4rem;
+    gap: 1rem 1.8rem;
 `;
 
 const InfoItem = styled.div`
     display: flex;
     flex-direction: column;
+    gap: 0.5rem;
 `;
 
 const InfoLabel = styled.span`
-    font-size: 1.15rem;
+    font-size: 1.4rem;
     opacity: 0.95;
 `;
 
 const InfoValue = styled.span`
-    font-size: 1.25rem;
+    font-size: 1.6rem;
     font-weight: 800;
 `;
 
 const SubSectionTitle = styled.h4`
-    margin-top: 2rem;
-    font-size: 1.25rem;
+    margin-top: 2.5rem;
+    font-size: 1.6rem;
     color: rgba(0, 0, 0, 0.6);
+    margin-bottom: 1rem;
 `;
 
 const LinkText = styled.button`
-    margin-top: 0.8rem;
-    font-size: 1.2rem;
-    color: var(--black);
-    background: transparent;
-    text-align: left;
+    margin-top: 1rem;
+    font-size: 1.4rem;
+    color: var(--white);
+    background: var(--mainBlue);
+    text-align: center;
     cursor: pointer;
+    padding: 1rem 1.5rem;
+    border: none;
+    border-radius: 1rem;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    width: 100%;
+
+    &:hover {
+        background: #0056b3;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
 `;
 
 const LogoutButton = styled.button`
     width: 100%;
-    margin-top: 2rem;
-    height: 3.6rem;
+    margin-top: 3rem;
+    height: 4rem;
     border-radius: 1.2rem;
     background: var(--white);
     color: #ff4d4f;
     border: 2px solid #ffb3b3;
-    font-size: 1.35rem;
+    font-size: 1.6rem;
     font-weight: 800;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &:hover {
+        background: #fff5f5;
+        border-color: #ff8080;
+    }
 `;
 
 /* 큰 화면에서는 조금 더 키움 */
@@ -103,52 +149,89 @@ const LargeUp = styled.div`
             padding: 3rem 2.4rem 7rem;
         }
         ${Greeting} {
-            font-size: 1.8rem;
+            font-size: 2.2rem;
         }
         ${Card} {
-            padding: 2rem;
+            padding: 2.5rem;
         }
         ${CardTitle} {
-            font-size: 1.4rem;
+            font-size: 2rem;
         }
         ${CardDesc} {
-            font-size: 1.35rem;
+            font-size: 1.8rem;
         }
         ${InfoLabel} {
-            font-size: 1.2rem;
+            font-size: 1.6rem;
         }
         ${InfoValue} {
-            font-size: 1.35rem;
+            font-size: 1.8rem;
         }
         ${SubSectionTitle} {
-            font-size: 1.3rem;
+            font-size: 1.8rem;
         }
         ${LinkText} {
-            font-size: 1.25rem;
+            font-size: 1.6rem;
         }
         ${LogoutButton} {
-            height: 4rem;
-            font-size: 1.4rem;
+            height: 4.5rem;
+            font-size: 1.8rem;
         }
     }
 `;
 
 const MyPage = () => {
     const navigate = useNavigate();
+    const { info } = useInfoStore();
 
     const handleLogout = () => {
         navigate('/');
     };
 
+    // 연소득 범위 표시 함수
+    const getIncomeRange = () => {
+        if (info.min_income && info.max_income) {
+            return `연 ${info.min_income}만원 이상 ~ ${info.max_income}만원 이하`;
+        } else if (info.min_income) {
+            return `연 ${info.min_income}만원 이상`;
+        } else if (info.max_income) {
+            return `연 ${info.max_income}만원 이하`;
+        }
+        return '입력되지 않음';
+    };
+
+    // 전공 분야 표시 함수
+    const getMajorDisplay = () => {
+        if (info.major && info.major.length > 0) {
+            if (info.major.includes('제한 없음')) {
+                return '제한 없음';
+            }
+            return info.major.join(', ');
+        }
+        return '입력되지 않음';
+    };
+
+    // 특화 분야 표시 함수
+    const getSpecialDisplay = () => {
+        if (info.special && info.special.length > 0) {
+            if (info.special.includes('제한 없음')) {
+                return '제한 없음';
+            }
+            return info.special.join(', ');
+        }
+        return '입력되지 않음';
+    };
+
     return (
         <PageContainer>
-            <Section>
+            <HeaderSection>
                 <Greeting>
                     김자립님,
                     <br />
                     오늘도 힘찬 하루 보내세요! 💪
                 </Greeting>
+            </HeaderSection>
 
+            <Section>
                 <Card>
                     <CardTitle>내 맞춤 프로필</CardTitle>
                     <CardDesc>
@@ -161,35 +244,35 @@ const MyPage = () => {
                         <InfoGrid>
                             <InfoItem>
                                 <InfoLabel>관심 지역</InfoLabel>
-                                <InfoValue>서울특별시</InfoValue>
+                                <InfoValue>{info.region || '입력되지 않음'}</InfoValue>
                             </InfoItem>
                             <InfoItem>
                                 <InfoLabel>연령</InfoLabel>
-                                <InfoValue>만 24세</InfoValue>
+                                <InfoValue>{info.age ? `만 ${info.age}세` : '입력되지 않음'}</InfoValue>
                             </InfoItem>
                             <InfoItem>
                                 <InfoLabel>혼인여부</InfoLabel>
-                                <InfoValue>미혼</InfoValue>
+                                <InfoValue>{info.marry || '입력되지 않음'}</InfoValue>
                             </InfoItem>
                             <InfoItem>
                                 <InfoLabel>연소득</InfoLabel>
-                                <InfoValue>연 100만원 이상 ~ 300만원 이하</InfoValue>
+                                <InfoValue>{getIncomeRange()}</InfoValue>
                             </InfoItem>
                             <InfoItem>
                                 <InfoLabel>학력</InfoLabel>
-                                <InfoValue>대학 재학</InfoValue>
+                                <InfoValue>{info.graduate || '입력되지 않음'}</InfoValue>
                             </InfoItem>
                             <InfoItem>
                                 <InfoLabel>취업 상태</InfoLabel>
-                                <InfoValue>제한 없음</InfoValue>
+                                <InfoValue>{info.employment || '입력되지 않음'}</InfoValue>
                             </InfoItem>
                             <InfoItem>
                                 <InfoLabel>전공 분야</InfoLabel>
-                                <InfoValue>인문, 상경 계열</InfoValue>
+                                <InfoValue>{getMajorDisplay()}</InfoValue>
                             </InfoItem>
                             <InfoItem>
                                 <InfoLabel>특화 분야</InfoLabel>
-                                <InfoValue>제한 없음</InfoValue>
+                                <InfoValue>{getSpecialDisplay()}</InfoValue>
                             </InfoItem>
                         </InfoGrid>
                     </ProfilePanel>
