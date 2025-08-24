@@ -5,11 +5,13 @@ export const useChatStore = create(
   persist(
     (set) => ({
       threadId: null,
-      random: 1,
+      messages: [],
+      selectedPolicy: null,
 
-      resetChat: () => set({ threadId: null, random: 1 }),
-      setRandom: (value) => set({ random: value }),
+      resetChat: () => set({ threadId: null, messages: [], selectedPolicy: null }),
       setThread_id: (value) => set({ threadId: value }),
+      setMessages: (value) => set({ messages: value }),
+      settingPolicy: (value) => set({ threadId: null, messages: [], selectedPolicy: value }),
     }),
     {
       name: 'chat',

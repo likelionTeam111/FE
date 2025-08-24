@@ -6,7 +6,7 @@ import ai from '../../assets/img/ai.png';
 import send from '../../assets/img/send.png';
 
 // api
-import { chatApi } from '../../apis/api/chatBot';
+import { chatApi, policyChatApi } from '../../apis/api/chatBot';
 
 //스토어
 import { useChatStore } from '../../store/useChatStore';
@@ -84,31 +84,22 @@ const SendBtn = styled.button`
 `;
 
 const Chatbot = () => {
-  const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
   const bottomRef = useRef(null);
+  const [isPending, setIsPending] = useState(false);
 
-  const { threadId, random, resetChat, setRandom, setThread_id } = useChatStore();
+  const { threadId, resetChat, setThread_id, messages, setMessages, selectedPolicy } = useChatStore();
 
-  //대화 기록 불러오기
-  useEffect(() => {
-    const saved = sessionStorage.getItem('chat_message');
-    if (saved !== null) setMessages(JSON.parse(saved));
-  }, []);
+  //스크롤
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: 'smooth', block: 'end' });
   }, [messages]);
 
-  // 대화 초기화
-  const handleReset = () => {
-    sessionStorage.removeItem('chat_message');
-    setMessages([]);
-    resetChat();
-  };
   //메시지 보내기
   const handeSend = async (e) => {
     e.preventDefault();
-
+    if (isPending) return;
+    setIsPending(true);
     // 사용자 메시지
     const useMsg = {
       message: input,
@@ -117,7 +108,6 @@ const Chatbot = () => {
 
     const userUpdated = [...messages, useMsg];
     setMessages(userUpdated);
-    sessionStorage.setItem('chat_message', JSON.stringify(userUpdated));
 
     // 봇 메세지
     const prompt = {
@@ -125,22 +115,26 @@ const Chatbot = () => {
       thread_id: threadId,
     };
 
-    //대화를 처음 시작한다면
-    if (!random) {
-      const n = Math.floor(Math.random() * 5000) + 1;
-      setRandom(n);
-    }
     setInput('');
-    const { answer, thread_id } = await chatApi(prompt, random);
-    setThread_id(thread_id);
 
-    const BotMsg = {
-      message: answer,
-      direction: 'ingoing',
-    };
-    const botUpdated = [...userUpdated, BotMsg];
-    setMessages(botUpdated);
-    sessionStorage.setItem('chat_message', JSON.stringify(botUpdated));
+    try {
+      // 선택된 정책 번호 유무에 따라서 다른 요청
+      const { answer, thread_id } =
+        selectedPolicy != null ? await policyChatApi(prompt, selectedPolicy.id) : await chatApi(prompt);
+
+      setThread_id(thread_id);
+      const BotMsg = {
+        message: answer,
+        direction: 'ingoing',
+      };
+      const botUpdated = [...userUpdated, BotMsg];
+
+      setMessages(botUpdated);
+    } catch (e) {
+      console.error(e);
+    } finally {
+      setIsPending(false);
+    }
   };
 
   return (
@@ -148,12 +142,25 @@ const Chatbot = () => {
       <MessageWrapper>
         <MsseageBox>
           <Avatar src={ai} alt="ai" />
-          <Message>
-            어떻게 도와드릴까요? <br />
-            ex1) 창업 준비중인데, 관련 정책 별로 가장 혜택이 높은 순으로 알려줘.
-            <br />
-            ex2) 이제 막 취업해서 첫 월급 받았는데 뭐부터 해야 할지 하나도 모르겠어.
-          </Message>
+          {selectedPolicy === null ? (
+            <Message>
+              어떻게 도와드릴까요? <br />
+              ex1) 창업 준비중인데, 관련 정책 별로 가장 혜택이 높은 순으로 알려줘.
+              <br />
+              ex2) 이제 막 취업해서 첫 월급 받았는데 뭐부터 해야 할지 하나도 모르겠어.
+            </Message>
+          ) : (
+            <Message>
+              {selectedPolicy.plcyNm}에 대해 더 자세히 알려드릴게요! <br />
+              무엇이 궁금하신가요?
+              <br />
+              {selectedPolicy.plcyNm} <br />
+              대상: {selectedPolicy.ageLmt}, {selectedPolicy.jobCd_display}
+              <br />
+              지원내용: {selectedPolicy.about_benefit} <br />
+              신청방법: {selectedPolicy.plcyAplyMthdCn} <br />
+            </Message>
+          )}
         </MsseageBox>
 
         {messages?.map((m, idx) => {
@@ -166,7 +173,7 @@ const Chatbot = () => {
         })}
         <div ref={bottomRef} />
       </MessageWrapper>
-      <ResetBnt onClick={handleReset}>대화 새로 시작하기</ResetBnt>
+      <ResetBnt onClick={resetChat}>대화 새로 시작하기</ResetBnt>
 
       <Form onSubmit={handeSend}>
         <Input placeholder="무엇이든 물어보세요!" value={input} onChange={(e) => setInput(e.target.value)} required />

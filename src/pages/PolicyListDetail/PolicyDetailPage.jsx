@@ -2,10 +2,13 @@ import styled from 'styled-components';
 import likeImg from '../../assets/img/like.png';
 import ai from '../../assets/img/ai.png';
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 
 // api
 import { detailPolicy, addFavoritePolicy, deleteFavoritePolicy } from '../../apis/api/policy';
+
+//스토어
+import { useChatStore } from '../../store/useChatStore';
 
 const Container = styled.div`
   height: calc(100vh - 14vh);
@@ -155,6 +158,9 @@ const PolicyDetailPage = () => {
   const [plcyInfo, setplcyInfo] = useState({});
   const { plcyNo } = useParams(); // string
   const [isPending, setIsPending] = useState(false);
+  const navigate = useNavigate();
+
+  const { settingPolicy } = useChatStore();
 
   //좋아요
   const handleLike = async () => {
@@ -173,6 +179,12 @@ const PolicyDetailPage = () => {
     } finally {
       setIsPending(false); // 응답 오면 다시 활성화
     }
+  };
+
+  // AI한테 물어보기
+  const askAssistant = () => {
+    settingPolicy(plcyInfo);
+    navigate('/chatbot');
   };
 
   useEffect(() => {
@@ -224,7 +236,7 @@ const PolicyDetailPage = () => {
           </Content>
           <AiBox>
             <AiImg src={ai} />
-            <AiButton>궁금한 점이 있으시면 저 AI 챗봇에게 편하게 물어보세요.</AiButton>
+            <AiButton onClick={askAssistant}>궁금한 점이 있으시면 저 AI 챗봇에게 편하게 물어보세요.</AiButton>
           </AiBox>
         </Section>
         <Section>
