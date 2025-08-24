@@ -23,3 +23,13 @@ export const deleteFavoritePolicy = async (id) => {
   const { status } = await instance.delete(`/policy/favorite/${id}/delete/`, {});
   return status;
 };
+
+// 정책 검색
+export const searchPolicy = async (plcyNm, page) => {
+  //TODO 나중에 이렇게 파라미터에 넣는 방법 알아보기
+  const { data } = await instance.get('/policy/search', {
+    params: { plcyNm, page },
+  });
+  console.log(data);
+  return data; // { count, next, previous, results }
+};

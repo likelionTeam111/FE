@@ -5,6 +5,9 @@ import Mainpage from './pages/Nav/Mainpage';
 import ChatbotPage from './pages/Nav/ChatbotPage';
 import MyPage from './pages/Nav/MyPage';
 
+// Search 페이지
+import SearchPage from './pages/SearchPage';
+
 //PolicyListDetail 페이지
 import PolicyListPage from './pages/PolicyListDetail/PolicyListPage';
 import PolicyDetailPage from './pages/PolicyListDetail/PolicyDetailPage';
@@ -15,12 +18,12 @@ import LoginPage from './pages/Login/LoginPage';
 import SignUpPage from './pages/Login/SignUpPage';
 
 //온보딩 페이지
-import ProfileInfo from './pages/Onboarding/ProfileInfo';
-import SocioEconomicInfo from './pages/Onboarding/SocioEconomicInfo';
-import OccupationInfo from './pages/Onboarding/OccupationInfo';
-import ExtraInfo from './pages/Onboarding/ExtraInfo';
-import Final from './pages/Onboarding/Final';
-import Welcome from './pages/Onboarding/Welcome';
+import ProfileInfo from './pages/OnBoarding/ProfileInfo';
+import SocioEconomicInfo from './pages/OnBoarding/SocioEconomicInfo';
+import OccupationInfo from './pages/OnBoarding/OccupationInfo';
+import ExtraInfo from './pages/OnBoarding/ExtraInfo';
+import Final from './pages/OnBoarding/Final';
+import Welcome from './pages/OnBoarding/Welcome';
 
 //레이아웃
 import DefaultLayout from './layouts/DefaultLayout';
@@ -48,6 +51,7 @@ function App() {
         <Route element={<ProtectedRoute />}>
           <Route element={<DefaultLayout />}>
             <Route path="/" element={<Mainpage />} />
+            <Route path="/search" element={<SearchPage />} />
             <Route path="/my" element={<MyPage />} />
             <Route path="/chatbot" element={<ChatbotPage />} />
             <Route path="/policyList" element={<PolicyListPage />} />

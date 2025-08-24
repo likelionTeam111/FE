@@ -73,6 +73,9 @@ const SignUpPage = () => {
   const [password, setPassword] = useState('');
   const [checkedPassword, setCheckedPassword] = useState('');
 
+  const HAS_SPECIAL = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-])$/;
+  const hasSpecialChar = (s) => HAS_SPECIAL.test(s);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     if (name === 'nickName') setNickName(value);
@@ -85,6 +88,12 @@ const SignUpPage = () => {
   const handleSignUp = async (e) => {
     e.preventDefault();
 
+    // 유효성 검사
+    if (!hasSpecialChar(password)) {
+      alert('대문자, 소문자, 숫자, 특수문자가 각각 1개 이상 들어가야 합니다.');
+      return;
+    }
+
     if (password !== checkedPassword) return alert('비밀번호와 비밀번호 확인이 같아야 합니다.');
 
     const body = {
@@ -93,7 +102,6 @@ const SignUpPage = () => {
       password2: checkedPassword,
       nickname: nickName,
     };
-    console.log(body);
     try {
       await registration(body);
       // 회원가입 성공 시 로그인 페이지로 이동
@@ -108,8 +116,8 @@ const SignUpPage = () => {
   return (
     <Container>
       <Wrapper>
-        <Title id="signup-title">회원가입</Title>
-        <Form aria-labelledby="signup-title" onSubmit={handleSignUp}>
+        <Title>회원가입</Title>
+        <Form onSubmit={handleSignUp}>
           <InputBox>
             <Input
               type="text"

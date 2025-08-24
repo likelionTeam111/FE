@@ -32,9 +32,8 @@ const Header = () => {
   let buttonBg = 'var(--black)';
 
   //페이지마다 헤더 변경
-  if (location.pathname === '/policyList') {
-    headerBg = `var(--mainSky)`;
-  } else if (location.pathname.startsWith('/policyDetail')) {
+
+  if (location.pathname.startsWith('/policyDetail')) {
     headerBg = `var(--mainBlue)`;
     buttonBg = 'var(--white)';
   } else if (location.pathname === '/chatbot') {
