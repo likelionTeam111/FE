@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import { useInfoStore } from '../../store/useInfoStore';
 import AiIcon from '../../assets/img/ai.png';
-import PixelLogo from '../../assets/img/pixel-logo.png';
+import PixelLogo from '../../assets/img/pixelLogoWhite.png';
 import AiUI from '../../assets/img/Ai UI.png';
 
 const PageContainer = styled.main`
@@ -15,13 +15,13 @@ const PageContainer = styled.main`
 
 const HeaderSection = styled.div`
     background-color: var(--white);
-    padding: 2rem 2rem 1.5rem;
+    padding: 1.5rem 2rem 1rem;
     text-align: left;
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
 `;
 
 const Greeting = styled.p`
-    font-size: 2rem;
+    font-size: 1.8rem;
     color: var(--black);
     margin: 0 0 1rem 0;
     line-height: 1.4;
@@ -30,8 +30,8 @@ const Greeting = styled.p`
 `;
 
 const ServiceDesc = styled.p`
-    font-size: 2.3rem;
-    font-weight: 700;
+    font-size: 1.8rem;
+    font-weight: 600;
     color: var(--black);
     margin: 0;
     line-height: 1.4;
@@ -44,7 +44,7 @@ const MainContent = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 5rem;
+    gap: 2.5rem;
 `;
 
 const RecommendWrap = styled.div`
@@ -54,45 +54,49 @@ const RecommendWrap = styled.div`
     padding: 1.5rem;
     color: var(--white);
     overflow: hidden;
-    min-height: 350px;
+    min-height: 300px;
     margin-bottom: 0;
     width: 100%;
-    max-width: 75%;
+    max-width: 80%;
 `;
 
 const LogoImage = styled.img`
     position: absolute;
-    right: 0;
-    bottom: 0;
+    right: 1rem;
+    bottom: 1rem;
     width: 150px;
     height: 150px;
     z-index: 1;
     pointer-events: none;
+    opacity: 0.8;
 `;
 
 const RecommendHeader = styled.div`
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     align-items: flex-start;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.2rem;
     position: relative;
     z-index: 2;
 `;
 
+{
+    /* 탐색 결과 제목 */
+}
 const RecommendTitle = styled.h2`
-    font-size: 2.2rem;
-    font-weight: 800;
-    margin: 0 0 0.5rem 0;
+    font-size: 2.1rem;
+    font-weight: 500;
+    margin: 0.8rem 0 0.5rem 0;
 `;
 
 const RecommendDesc = styled.p`
-    font-size: 1.6rem;
+    font-size: 1.4rem;
     opacity: 0.9;
-    margin: 0;
+    margin: 0 0 0.8rem 0;
 `;
 
 const ViewAll = styled.button`
-    font-size: 1.6rem;
+    font-size: 1.3rem;
     color: var(--white);
     background: transparent;
     border: none;
@@ -101,6 +105,7 @@ const ViewAll = styled.button`
     white-space: nowrap;
     font-weight: 600;
     transition: opacity 0.2s ease;
+    align-self: flex-end;
 
     &:hover {
         opacity: 0.8;
@@ -111,7 +116,7 @@ const CardsRow = styled.div`
     display: flex;
     gap: 1rem;
     overflow-x: auto;
-    padding: 1rem 0 1.5rem;
+    padding: 1rem 0 1.2rem;
     position: relative;
     z-index: 2;
     scrollbar-width: none;
@@ -126,9 +131,9 @@ const PolicyCard = styled.div`
     background: var(--white);
     color: var(--black);
     border-radius: 1.2rem;
-    padding: 1.2rem;
-    min-width: 16rem;
-    min-height: 160px;
+    padding: 1rem;
+    min-width: 10rem;
+    min-height: 150px;
     box-shadow: 0 0.4rem 1.2rem rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
@@ -145,15 +150,15 @@ const PolicyCard = styled.div`
 `;
 
 const PolicyTitle = styled.h3`
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     font-weight: 700;
-    margin: 0 0 0.8rem 0;
+    margin: 0 0 0.6rem 0;
     line-height: 1.3;
 `;
 
 const Tag = styled.span`
     display: block;
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     color: rgba(0, 0, 0, 0.6);
     margin-bottom: 0.3rem;
     line-height: 1.3;
@@ -161,21 +166,23 @@ const Tag = styled.span`
 
 const ButtonContainer = styled.div`
     display: flex;
-    gap: 0.6rem;
+    flex-direction: column;
+    gap: 0.5rem;
     margin-top: auto;
 `;
 
 const PolicyButton = styled.button`
-    padding: 0.6rem 1rem;
+    padding: 0.5rem 0.8rem;
     border: 1px solid #e8f4fd;
-    border-radius: 1.2rem;
+    border-radius: 1rem;
     background: var(--white);
     color: var(--black);
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.2s ease;
-    flex: 1;
+    width: 100%;
+    text-align: center;
 
     &:hover {
         background: #f8f9fa;
@@ -197,24 +204,24 @@ const PolicyButton = styled.button`
 `;
 
 const ReSearchButton = styled.button`
-    width: auto;
+    width: 100%;
     background: var(--white);
-    color: var(--mainBlue);
+    color: var(--black);
     border: 2px solid var(--white);
     border-radius: 1rem;
-    padding: 1rem 1.5rem;
-    font-size: 1.7rem;
+    padding: 0.5rem 0.8rem;
+    font-size: 1.1rem;
     font-weight: 700;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 0.6rem;
+    gap: 0.5rem;
     cursor: pointer;
     transition: all 0.2s ease;
     align-self: flex-start;
     position: relative;
     z-index: 2;
-    margin-top: 4rem;
+    margin-top: 2rem;
 
     &:hover {
         background: var(--mainBlue);
@@ -225,20 +232,20 @@ const ReSearchButton = styled.button`
 `;
 
 const ReSearchIcon = styled.img`
-    width: 1.6rem;
-    height: 1.6rem;
+    width: 1.3rem;
+    height: 1.3rem;
 `;
 
 const HelperBanner = styled.div`
     display: flex;
     align-items: center;
-    gap: 1.5rem;
+    gap: 1.2rem;
     background: #f8f9fa;
     border-radius: 1rem;
-    padding: 2rem 2.2rem;
+    padding: 1.5rem 1.8rem;
     margin-bottom: 0;
     width: 100%;
-    max-width: 75%;
+    max-width: 80%;
     transition: background-color 0.2s ease;
 
     &:hover {
@@ -247,15 +254,15 @@ const HelperBanner = styled.div`
 `;
 
 const HelperText = styled.p`
-    font-size: 1.6rem;
+    font-size: 1.3rem;
     color: var(--black);
     margin: 0;
     line-height: 1.5;
 `;
 
 const HelperIcon = styled.button`
-    width: 3.5rem;
-    height: 3.5rem;
+    width: 3rem;
+    height: 3rem;
     flex-shrink: 0;
     background: none;
     border: none;
@@ -284,14 +291,14 @@ const HelperIcon = styled.button`
 const SearchSection = styled.div`
     margin-bottom: 0;
     width: 100%;
-    max-width: 75%;
-    padding-bottom: 2rem;
+    max-width: 80%;
+    padding-bottom: 0.5rem;
 `;
 
 const SearchPrompt = styled.p`
-    font-size: 1.6rem;
+    font-size: 1.3rem;
     color: var(--black);
-    margin: 0 0 1.5rem 0;
+    margin: 0 0 1.2rem 0;
     font-weight: 600;
 `;
 
@@ -303,10 +310,10 @@ const SearchInput = styled.div`
 
 const SearchField = styled.input`
     width: 100%;
-    padding: 1.5rem 3.5rem 1.5rem 1.8rem;
+    padding: 1.2rem 3rem 1.2rem 1.5rem;
     border: 1px solid #e0e0e0;
     border-radius: 1rem;
-    font-size: 1.4rem;
+    font-size: 1.3rem;
     background: var(--white);
     outline: none;
     transition: border-color 0.2s ease, box-shadow 0.2s ease;
@@ -323,9 +330,9 @@ const SearchField = styled.input`
 
 const SearchIcon = styled.div`
     position: absolute;
-    right: 1.5rem;
-    width: 1.4rem;
-    height: 1.4rem;
+    right: 1.2rem;
+    width: 1.2rem;
+    height: 1.2rem;
     background: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23999' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3ccircle cx='11' cy='11' r='8'%3e%3c/circle%3e%3cpath d='m21 21-4.35-4.35'%3e%3c/path%3e%3c/svg%3e")
         no-repeat center/contain;
     pointer-events: none;
