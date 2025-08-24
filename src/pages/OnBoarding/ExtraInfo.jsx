@@ -184,7 +184,11 @@ const ExtraInfo = () => {
         </ExampleContainer>
 
         {/* 입력 필드 */}
-        <InputField placeholder="직접 입력해주세요." onChange={(e) => setInfo('goal', e.target.value)} />
+        <InputField 
+          placeholder="직접 입력해주세요." 
+          value={info.goal || ''}
+          onChange={(e) => setInfo('goal', e.target.value)} 
+        />
       </ExtraContent>
 
       {/* 하단 네비게이션 */}

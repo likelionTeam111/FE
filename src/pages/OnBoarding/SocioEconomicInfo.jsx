@@ -234,12 +234,26 @@ const SocioEconomicInfo = () => {
           <SectionTitle>연소득</SectionTitle>
           <IncomeContainer>
             <IncomeText>연</IncomeText>
-            <IncomeInput type="number" name="min_income" placeholder="최소 금액" onChange={handleChange} min="0" />
+            <IncomeInput 
+              type="number" 
+              name="min_income" 
+              value={info.min_income || ''}
+              placeholder="최소 금액" 
+              onChange={handleChange} 
+              min="0" 
+            />
             <IncomeText>만원 이상~</IncomeText>
           </IncomeContainer>
           <IncomeContainer>
             <IncomeText>연</IncomeText>
-            <IncomeInput type="number" name="max_income" placeholder="최대 금액" onChange={handleChange} min="0" />
+            <IncomeInput 
+              type="number" 
+              name="max_income" 
+              value={info.max_income || ''}
+              placeholder="최대 금액" 
+              onChange={handleChange} 
+              min="0" 
+            />
             <IncomeText>만원 이하</IncomeText>
           </IncomeContainer>
         </SectionContainer>
