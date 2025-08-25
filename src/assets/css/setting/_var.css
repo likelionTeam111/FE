@@ -1,14 +1,16 @@
 :root {
-  /* 메인 컬러 */
-  --mainBlue: #1686f9;
-  --mainSky2: ##e9f7ff;
-  --mainSky: #ecf2fa;
+    /* 메인 컬러 */
+    --mainBlue: #1686f9;
+    --mainSky2: ##e9f7ff;
+    --mainSky: #ecf2fa;
 
-  /* 버튼 컬러 */
-  --buttonGrey: #556376;
+    /* 버튼 컬러 */
+    --buttonGrey: #556376;
 
-  /* 기본 색상 세트 */
-  --white: #fff;
-  --black: #000;
-  --grey: #c8c8c8;
+    /* 기본 색상 세트 */
+    --white: #fff;
+    --black: #000;
+    --grey: #c8c8c8;
+
+    --font-sans: 'Pretendard';
 }
