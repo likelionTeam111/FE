@@ -54,6 +54,7 @@ const Avatar = styled.img`
 const Form = styled.form`
   height: auto;
   margin: 0 auto 0.5rem; /* 가운데 정렬만, 세로 auto 제거 */
+  margin-bottom: 2rem;
 `;
 
 const ResetBnt = styled.button`

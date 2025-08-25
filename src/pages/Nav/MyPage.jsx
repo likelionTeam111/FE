@@ -38,13 +38,14 @@ const Card = styled.div`
   background-color: var(--mainSky);
   flex:1;
   box-sizing: border-box;
-  margin-top: 2rem;
+  margin-top: 1rem;
   border-radius: 15px 15px 0 0;
   padding: 2rem;
   box-shadow: 0 0.6rem 1.6rem rgba(0, 0, 0, 0.08);
   display: flex;
   flex-direction: column;
   overflow-y: auto;
+  gap: 1rem;
 `;
 
 const CardTitle = styled.h3`
@@ -116,6 +117,8 @@ const LinkText = styled.button`
   font-weight: 400;
   transition: all 0.2s ease;
   width: 100%;
+    height: 6rem;
+
 
   &:hover {
     background: #0056b3;
@@ -126,13 +129,14 @@ const LinkText = styled.button`
 
 const LogoutButton = styled.button`
   width: 100%;
-  height: 4rem;
-  margin: auto;
+  height: 6rem;
+    padding: 1rem 1.5rem;
+  margin-bottom: 2rem;
   border-radius: 1.2rem;
   background: var(--white);
   color: #ff4d4f;
   border: 2px solid #ffb3b3;
-  font-size: 1.6rem;
+  font-size: 1.4rem;
   font-weight: 800;
   cursor: pointer;
   transition: all 0.2s ease;
