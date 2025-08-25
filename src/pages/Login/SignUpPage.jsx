@@ -47,11 +47,12 @@ const Input = styled.input`
 
 /*버튼 수정*/
 const LoginBtn = styled.button`
-    background-color: var(--grey);
+    background-color: ${(props) => (props.isActive ? 'var(--mainBlue)' : 'var(--grey)')};
     color: var(--white);
     font-size: 2rem;
     height: 5rem;
     border-radius: 15px;
+    transition: background-color 0.3s ease;
 `;
 const SignUpLink = styled(Link)`
     display: flex;
@@ -159,7 +160,9 @@ const SignUpPage = () => {
                             required
                         />
                     </InputBox>
-                    <LoginBtn type="submit">회원가입</LoginBtn>
+                    <LoginBtn type="submit" isActive={nickName && username && password && checkedPassword}>
+                        회원가입
+                    </LoginBtn>
                 </Form>
                 <SignUpLink to={'/login'}>계정이 있으신가요?</SignUpLink>
             </Wrapper>
