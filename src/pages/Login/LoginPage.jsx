@@ -49,11 +49,12 @@ const Input = styled.input`
     border-radius: 15px;
 `;
 const LoginBtn = styled.button`
-    background-color: var(--grey);
+    background-color: ${(props) => (props.isActive ? 'var(--mainBlue)' : 'var(--grey)')};
     color: var(--white);
     font-size: 2rem;
     height: 5rem;
     border-radius: 15px;
+    transition: background-color 0.3s ease;
 `;
 const SignUpLink = styled(Link)`
     display: flex;
@@ -102,7 +103,6 @@ const LoginPage = () => {
             //로그인 세팅
             applyLogin(access, refresh, nickname);
 
-
             const data = await myPage();
 
             if (data.id === undefined) navigate('/onboarding');
@@ -139,7 +139,9 @@ const LoginPage = () => {
                             required
                         />
                     </InputBox>
-                    <LoginBtn type="submit">로그인</LoginBtn>
+                    <LoginBtn type="submit" isActive={username && password}>
+                        로그인
+                    </LoginBtn>
                 </Form>
                 <SignUpLink to={'/signup'}>계정이 없으신가요?</SignUpLink>
             </Wrapper>
