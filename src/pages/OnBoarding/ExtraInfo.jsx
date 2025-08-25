@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { useInfoStore } from '../../store/useInfoStore';
 
 // api
-import { enroll } from '../../apis/api/profile';
+import { enroll, enrollPatch, myPage } from '../../apis/api/profile';
 
 const ExtraContainer = styled.div`
   display: flex;
@@ -155,7 +155,12 @@ const ExtraInfo = () => {
 
   const handleNext = async () => {
     navigate('/onboarding/final');
-    await enroll(info); // TODO 온보딩 정보 요청 위치
+    const data = await myPage();
+    if (data.id === undefined) {
+      await enroll(info);
+    } else {
+      await enrollPatch(info);
+    }
   };
 
   return (
@@ -184,10 +189,10 @@ const ExtraInfo = () => {
         </ExampleContainer>
 
         {/* 입력 필드 */}
-        <InputField 
-          placeholder="직접 입력해주세요." 
+        <InputField
+          placeholder="직접 입력해주세요."
           value={info.goal || ''}
-          onChange={(e) => setInfo('goal', e.target.value)} 
+          onChange={(e) => setInfo('goal', e.target.value)}
         />
       </ExtraContent>
 

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled, { keyframes } from 'styled-components';
+import { useAuthStore } from '../../store/useAuthStore';
 
 // 페이드인 애니메이션
 const fadeIn = keyframes`
@@ -98,6 +99,7 @@ const Final = () => {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(true);
   const [currentStep, setCurrentStep] = useState(0);
+  const { nickname } = useAuthStore();
 
   useEffect(() => {
     // 메인 제목이 먼저 나타나고, 그 다음에 로딩 텍스트들이 순차적으로 나타남
@@ -130,7 +132,7 @@ const Final = () => {
   }, [navigate]);
 
   const loadingSteps = [
-    '김자립님의 정보를 확인하고 있어요.',
+    `${nickname}님의 정보를 확인하고 있어요.`,
     '서울시에서 지원하는 청년 정책을 찾고 있어요.',
     '학생 신분으로 신청할 수 있는 혜택을 모으는 중..',
     '가장 좋은 정책들을 선별하고 있어요.. 잠시만요!',
@@ -146,7 +148,7 @@ const Final = () => {
       {/* 메인 콘텐츠 */}
       <FinalContent>
         {/* 메인 제목 */}
-        <MainTitle>김자립님을 위한 정책 탐색 중!</MainTitle>
+        <MainTitle>{nickname}님을 위한 정책 탐색 중!</MainTitle>
 
         {/* 로딩 텍스트들 */}
         <LoadingTextContainer>

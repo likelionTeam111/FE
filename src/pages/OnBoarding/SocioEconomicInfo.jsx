@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { useInfoStore } from '../../store/useInfoStore';
+import { useAuthStore } from '../../store/useAuthStore';
 
 // 컨테이너
 const SocioContainer = styled.div`
@@ -177,6 +178,7 @@ const SocioEconomicInfo = () => {
   const navigate = useNavigate();
 
   const { setInfo, info } = useInfoStore();
+  const { nickname } = useAuthStore();
 
   const handlePrevious = () => {
     navigate('/onboarding/profile-info');
@@ -227,32 +229,32 @@ const SocioEconomicInfo = () => {
       {/* 메인 콘텐츠 */}
       <SocioContent>
         {/* 제목 */}
-        <SocioTitle>김자립님께 맞춤 추천을 드리기 위해 몇 가지 정보가 더 필요해요!</SocioTitle>
+        <SocioTitle>{nickname}님께 맞춤 추천을 드리기 위해 몇 가지 정보가 더 필요해요!</SocioTitle>
 
         {/* 연소득 섹션 */}
         <SectionContainer>
           <SectionTitle>연소득</SectionTitle>
           <IncomeContainer>
             <IncomeText>연</IncomeText>
-            <IncomeInput 
-              type="number" 
-              name="min_income" 
+            <IncomeInput
+              type="number"
+              name="min_income"
               value={info.min_income || ''}
-              placeholder="최소 금액" 
-              onChange={handleChange} 
-              min="0" 
+              placeholder="최소 금액"
+              onChange={handleChange}
+              min="0"
             />
             <IncomeText>만원 이상~</IncomeText>
           </IncomeContainer>
           <IncomeContainer>
             <IncomeText>연</IncomeText>
-            <IncomeInput 
-              type="number" 
-              name="max_income" 
+            <IncomeInput
+              type="number"
+              name="max_income"
               value={info.max_income || ''}
-              placeholder="최대 금액" 
-              onChange={handleChange} 
-              min="0" 
+              placeholder="최대 금액"
+              onChange={handleChange}
+              min="0"
             />
             <IncomeText>만원 이하</IncomeText>
           </IncomeContainer>

@@ -7,6 +7,7 @@ import { login } from '../../apis/api/auth';
 import { myPage } from '../../apis/api/profile';
 // 스토어
 import { useAuthStore } from '../../store/useAuthStore';
+import { useInfoStore } from '../../store/useInfoStore';
 
 const Container = styled.div`
   width: 100vw;
@@ -75,6 +76,7 @@ const LoginPage = () => {
   const [password, setPassword] = useState('');
 
   const { applyLogin } = useAuthStore();
+  const { myInfo } = useInfoStore();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -100,8 +102,12 @@ const LoginPage = () => {
       alert('로그인 성공');
 
       const data = await myPage();
+
       if (data.id === undefined) navigate('/onboarding');
-      else navigate('/');
+      else {
+        myInfo(data);
+        navigate('/');
+      }
     } catch (e) {
       console.error(e);
       alert('로그인 실패');

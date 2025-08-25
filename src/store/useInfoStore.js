@@ -2,42 +2,38 @@ import { create } from 'zustand';
 import { persist, createJSONStorage } from 'zustand/middleware';
 
 const initialInfo = {
-    age: null,
-    region: null,
-    marry: null,
-    min_income: null,
-    max_income: null,
-    graduate: null,
-    employment: null,
-    major: [],
-    special: [],
-    goal: null,
+  age: null,
+  region: null,
+  marry: null,
+  min_income: null,
+  max_income: null,
+  graduate: null,
+  employment: null,
+  major: [],
+  special: [],
+  goal: null,
 };
 
 export const useInfoStore = create(
-    persist(
-        (set, get) => ({
-            info: initialInfo,
-            setInfo: (key, value) => {
-                set((state) => {
-                    const next = { ...state.info, [key]: value };
-                    console.log(`[setInfo] ${key} →`, value, next);
-                    return { info: next };
-                });
-            },
-            resetInfo: () => {
-                set({ info: initialInfo });
-            },
-            clearInfo: () => {
-                set({ info: initialInfo });
-            },
-        }),
-        {
-            name: 'onboarding-info', // localStorage에 저장될 키 이름
-            storage: createJSONStorage(() => localStorage), // localStorage 사용
-            partialize: (state) => ({ info: state.info }), // info 객체만 저장
-        }
-    )
+  persist(
+    (set) => ({
+      info: initialInfo,
+      setInfo: (key, value) => {
+        set((state) => {
+          const next = { ...state.info, [key]: value };
+          console.log(`[setInfo] ${key} →`, value, next);
+          return { info: next };
+        });
+      },
+      myInfo: (value) => set({ info: value }),
+      resetInfo: () => set({ info: initialInfo }),
+    }),
+    {
+      name: 'onboarding-info', // localStorage에 저장될 키 이름
+      storage: createJSONStorage(() => sessionStorage),
+      partialize: (state) => ({ info: state.info }), // info 객체만 저장
+    }
+  )
 );
 
 /*
