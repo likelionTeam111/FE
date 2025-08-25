@@ -112,7 +112,6 @@ const AgeText = styled.span`
     white-space: nowrap;
 `;
 
-// 혼인여부 버튼들
 const MaritalButtonContainer = styled.div`
     display: flex;
     gap: 12px;
@@ -137,7 +136,6 @@ const MaritalButton = styled.button`
     }
 `;
 
-// 하단 네비게이션
 const NavigationContainer = styled.div`
     display: flex;
     justify-content: space-between;
@@ -191,10 +189,8 @@ const ProfileInfo = () => {
     const handleChange = (e) => {
         const { name, value } = e.target;
 
-        // 문자열을 숫자로 변환 시도
         const num = Number(value);
 
-        // value가 공백이 아니고, 숫자로 변환 가능하면 number로 저장
         if (value !== '' && !isNaN(num)) {
             setInfo(name, num);
         } else {
@@ -203,7 +199,7 @@ const ProfileInfo = () => {
     };
 
     const handlePrevious = () => {
-        navigate(-1);
+        navigate('/onboarding/welcome');
     };
 
     const handleSkip = () => {
@@ -221,7 +217,11 @@ const ProfileInfo = () => {
             </ProgressBar>
 
             <ProfileContent>
-                <ProfileTitle>김자립님을 위한 ai 맞춤 정책을 추천해드릴게요</ProfileTitle>
+                <ProfileTitle>
+                    김자립님을 위한 ai 맞춤 정책을
+                    <br />
+                    추천해드릴게요
+                </ProfileTitle>
 
                 <InputContainer>
                     <InputLabel>관심지역</InputLabel>
