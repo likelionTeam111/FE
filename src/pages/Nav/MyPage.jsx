@@ -227,8 +227,8 @@ const MyPage = () => {
     const getGoalDisplay = () => {
         if (info.goal && info.goal.trim()) {
             const trimmedGoal = info.goal.trim();
-            if (trimmedGoal.length > 28) {
-                return trimmedGoal.substring(0, 28) + '...';
+            if (trimmedGoal.length > 55) {
+                return trimmedGoal.substring(0, 55) + '...';
             }
             return trimmedGoal;
         }
