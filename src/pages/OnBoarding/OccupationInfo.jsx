@@ -170,11 +170,11 @@ const OccupationInfo = () => {
       setInfo('major', ['제한없음']);
       return;
     }
-    if (info.major.includes('제한없음')) {
+    if (info.major?.includes('제한없음')) {
       setInfo('major', [field]);
       return;
     }
-    if (info.major.includes(field)) {
+    if (info.major?.includes(field)) {
       const deleteInfo = info.major.filter((f) => f !== field);
       setInfo('major', deleteInfo);
       return;
