@@ -6,6 +6,8 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   background-color: ${({ $headerBg }) => $headerBg};
+  padding: 1rem;
+  box-sizing: border-box;
 `;
 
 const BackSpace = styled.button`
@@ -19,8 +21,8 @@ const BackSpace = styled.button`
 const Logo = styled.span`
   color: var(--mainBlue);
   font-weight: bold;
-  font-size: 3rem;
-  margin-left: 3rem;
+  font-size: 2.5rem;
+  margin: 2rem;
 `;
 
 const Header = () => {

@@ -154,11 +154,7 @@ const Chatbot = () => {
               {selectedPolicy.plcyNm}에 대해 더 자세히 알려드릴게요! <br />
               무엇이 궁금하신가요?
               <br />
-              {selectedPolicy.plcyNm} <br />
-              대상: {selectedPolicy.ageLmt}, {selectedPolicy.jobCd_display}
-              <br />
-              지원내용: {selectedPolicy.about_benefit} <br />
-              신청방법: {selectedPolicy.plcyAplyMthdCn} <br />
+              {selectedPolicy.aiSummary}
             </Message>
           )}
         </MsseageBox>

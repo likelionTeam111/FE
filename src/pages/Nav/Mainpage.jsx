@@ -5,7 +5,6 @@ import { useState, useEffect } from 'react';
 //스토어
 import { useAuthStore } from '../../store/useAuthStore';
 import AiIcon from '../../assets/img/ai.png';
-import PixelLogo from '../../assets/img/pixel-logo.png';
 import AiUI from '../../assets/img/Ai UI.png';
 
 //api
