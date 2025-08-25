@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import logo from '../../assets/img/login.png';
 import { Link } from 'react-router-dom';
+import { removeCookie } from '../../apis/utils/cookie';
 const Container = styled.div`
   width: 100vw;
   height: 100vh;
@@ -60,11 +61,25 @@ const Button = styled(Link)`
   justify-content: center;
   align-items: center;
 `;
+const ResetBtn = styled.button`
+  width: 100%;
+  height: 10rem;
+  position: absolute;
+  top: 10px;
+  background-color: var(--mainBlue);
+  color: var(--mainBlue);
+`;
 
 const LoginPage = () => {
+  const handleReset = () => {
+    removeCookie('accessToken');
+    removeCookie('refreshToken');
+    sessionStorage.clear();
+  };
   return (
     <Container>
       <Wrapper>
+        <ResetBtn onClick={handleReset}>리셋</ResetBtn>
         <Title>
           청년 자립 <br />
           지원 서비스

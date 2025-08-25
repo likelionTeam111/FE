@@ -9,6 +9,9 @@ import Favorites from './pages/Nav/Favorites';
 // Search 페이지
 import SearchPage from './pages/SearchPage';
 
+// 에러 페이지
+import NotFound from './pages/NotFound';
+
 //PolicyListDetail 페이지
 import PolicyListPage from './pages/PolicyListDetail/PolicyListPage';
 import PolicyDetailPage from './pages/PolicyListDetail/PolicyDetailPage';
@@ -34,14 +37,14 @@ import OnboardingLayout from './layouts/OnboardingLayout';
 import ProtectedRoute from './routes/ProtectedRoute';
 
 function App() {
-    return (
-        <BrowserRouter>
-            <Routes>
-                <Route path="/auth" element={<AuthPage />} />
-                <Route path="/login" element={<LoginPage />} />
-                <Route path="/signup" element={<SignUpPage />} />
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/auth" element={<AuthPage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/signup" element={<SignUpPage />} />
+        <Route path="/notFound" element={<NotFound />} />
 
-<<<<<<< HEAD
         <Route element={<OnboardingLayout />}>
           <Route path="/onboarding" element={<Welcome />} />
           <Route path="/onboarding/profile-info" element={<ProfileInfo />} />
@@ -53,8 +56,9 @@ function App() {
         <Route element={<ProtectedRoute />}>
           <Route element={<DefaultLayout />}>
             <Route path="/" element={<Mainpage />} />
-            <Route path="/search" element={<SearchPage />} />
             <Route path="/my" element={<MyPage />} />
+            <Route path="/search" element={<SearchPage />} />
+            <Route path="/favorites" element={<Favorites />} />
             <Route path="/chatbot" element={<ChatbotPage />} />
             <Route path="/policyList" element={<PolicyListPage />} />
             <Route path="/policyDetail/:plcyNo" element={<PolicyDetailPage />} />
@@ -63,29 +67,6 @@ function App() {
       </Routes>
     </BrowserRouter>
   );
-=======
-                <Route element={<OnboardingLayout />}>
-                    <Route path="/onboarding" element={<Welcome />} />
-                    <Route path="/onboarding/profile-info" element={<ProfileInfo />} />
-                    <Route path="/onboarding/occupation-info" element={<OccupationInfo />} />
-                    <Route path="/onboarding/socio-economic-info" element={<SocioEconomicInfo />} />
-                    <Route path="/onboarding/extra-info" element={<ExtraInfo />} />
-                    <Route path="/onboarding/final" element={<Final />} />
-                </Route>
-                <Route element={<ProtectedRoute />}>
-                    <Route element={<DefaultLayout />}>
-                        <Route path="/" element={<Mainpage />} />
-                        <Route path="/my" element={<MyPage />} />
-                        <Route path="/favorites" element={<Favorites />} />
-                        <Route path="/chatbot" element={<ChatbotPage />} />
-                        <Route path="/policyList" element={<PolicyListPage />} />
-                        <Route path="/policyDetail/:plcyNo" element={<PolicyDetailPage />} />
-                    </Route>
-                </Route>
-            </Routes>
-        </BrowserRouter>
-    );
->>>>>>> 3d19f6a6846eca2bed5a76db229d9a5a87740ae7
 }
 
 export default App;

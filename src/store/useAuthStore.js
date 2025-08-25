@@ -6,8 +6,7 @@ export const useAuthStore = create(
   persist(
     (set) => ({
       isLogin: false,
-      access: null,
-      refresh: null,
+
       nickname: null,
 
       //로그인 세팅
@@ -15,14 +14,14 @@ export const useAuthStore = create(
         setCookie('accessToken', access);
         setCookie('refreshToken', refresh);
 
-        set({ isLogin: true, access, refresh, nickname });
+        set({ isLogin: true, nickname: nickname });
       },
 
       //로그아웃 세팅
       clearLogout: () => {
         removeCookie('accessToken');
         removeCookie('refreshToken');
-        set({ isLogin: false, access: null, refresh: null, nickname: null });
+        set({ isLogin: false, nickname: null });
       },
     }),
     {

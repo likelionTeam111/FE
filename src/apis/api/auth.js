@@ -8,7 +8,6 @@ export const login = async (info) => {
     refresh,
     user: { nickname },
   } = data;
-
   return { access, refresh, nickname };
 };
 
@@ -21,6 +20,5 @@ export const logout = async () => {
 //회원가입
 export const registration = async (info) => {
   const { data } = await instance.post('/dj/registration/', info);
-  console.log(data);
   return data; // X
 };

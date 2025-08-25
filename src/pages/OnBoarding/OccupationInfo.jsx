@@ -166,11 +166,11 @@ const OccupationInfo = () => {
 
   // 전공 분야 선택 (다중 선택)
   const handleMajorField = (field) => {
-    if (field === '제한 없음') {
-      setInfo('major', ['제한 없음']);
+    if (field === '제한없음') {
+      setInfo('major', ['제한없음']);
       return;
     }
-    if (info.major.includes('제한 없음')) {
+    if (info.major.includes('제한없음')) {
       setInfo('major', [field]);
       return;
     }
@@ -185,11 +185,11 @@ const OccupationInfo = () => {
 
   // 특화 분야 선택 (다중 선택)
   const handleSpecializedField = (field) => {
-    if (field === '제한 없음') {
-      setInfo('special', ['제한 없음']);
+    if (field === '제한없음') {
+      setInfo('special', ['제한없음']);
       return;
     }
-    if (info.special.includes('제한 없음')) {
+    if (info.special.includes('제한없음')) {
       setInfo('special', [field]);
       return;
     }
@@ -203,7 +203,7 @@ const OccupationInfo = () => {
   };
 
   const employmentOptions = [
-    '제한 없음',
+    '제한없음',
     '재직자',
     '자영업자',
     '미취업자',
@@ -216,7 +216,7 @@ const OccupationInfo = () => {
   ];
 
   const majorOptions = [
-    '제한 없음',
+    '제한없음',
     '인문계열',
     '사회계열',
     '상경계열',
@@ -228,7 +228,7 @@ const OccupationInfo = () => {
   ];
 
   const specializedOptions = [
-    '제한 없음',
+    '제한없음',
     '중소기업',
     '여성',
     '기초생활수급자',
