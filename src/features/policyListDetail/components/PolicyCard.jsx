@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 const Container = styled.div`
-  height: 9rem;
+  height: 8.2rem;
   flex-shrink: 0;
   width: 80%;
   display: flex;
@@ -38,7 +38,7 @@ const Keyword = styled.span`
   font-size: 1rem;
 `;
 
-const KeywordWrapper = styled.div`
+const CategoryWrapper = styled.div`
   flex: 1;
   display: flex;
   align-items: center;
@@ -72,10 +72,10 @@ const PolicyCard = ({ policyInfo }) => {
         </Link>
       </TitleWrapper>
       <Keyword># {plcyKywdNm}</Keyword>
-      <KeywordWrapper>
+      <CategoryWrapper>
         <Category>{lclsfNm}</Category>
         <Category>{mclsfNm}</Category>
-      </KeywordWrapper>
+      </CategoryWrapper>
     </Container>
   );
 };

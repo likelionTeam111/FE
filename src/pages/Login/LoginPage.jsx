@@ -98,9 +98,10 @@ const LoginPage = () => {
       applyLogin(access, refresh, nickname);
 
       alert('로그인 성공');
+
       const data = await myPage();
-      if (data.id) navigate('/');
-      else navigate('/onboarding');
+      if (data.id === undefined) navigate('/onboarding');
+      else navigate('/');
     } catch (e) {
       console.error(e);
       alert('로그인 실패');

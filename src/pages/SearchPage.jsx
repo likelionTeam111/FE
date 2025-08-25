@@ -96,6 +96,7 @@ const SearchPage = () => {
     e.preventDefault();
     const q = text.trim();
     if (!q) return; // 빈 문자열 방지
+
     setKeyword(q);
     setPage(1);
     try {
@@ -121,6 +122,8 @@ const SearchPage = () => {
 
   // 앞으로 가기
   const goNext = async () => {
+    if (data.next === null) return;
+
     const p = page + 1;
     setPage(p);
     try {

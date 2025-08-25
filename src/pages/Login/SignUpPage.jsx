@@ -73,7 +73,7 @@ const SignUpPage = () => {
   const [password, setPassword] = useState('');
   const [checkedPassword, setCheckedPassword] = useState('');
 
-  const HAS_SPECIAL = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-])$/;
+  const HAS_SPECIAL = /[#?!@$%^&*\-]/;
   const hasSpecialChar = (s) => HAS_SPECIAL.test(s);
 
   const handleChange = (e) => {
@@ -90,7 +90,7 @@ const SignUpPage = () => {
 
     // 유효성 검사
     if (!hasSpecialChar(password)) {
-      alert('대문자, 소문자, 숫자, 특수문자가 각각 1개 이상 들어가야 합니다.');
+      alert('비밀번호에 특수문자를 최소 1개 포함해 주세요.');
       return;
     }
 

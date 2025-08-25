@@ -7,6 +7,5 @@ export const enroll = async (info) => {
 
 export const myPage = async () => {
   const { data } = await instance.get('/profiles/mypage/');
-  console.log(data); // TODO내 정보 로그
   return data;
 };
