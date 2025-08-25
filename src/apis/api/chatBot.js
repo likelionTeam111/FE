@@ -2,7 +2,6 @@ import { instance } from '../utils/instance';
 
 export const chatApi = async (prompt) => {
   const { data } = await instance.post(`/policy/chat/`, prompt);
-  console.log(data);
   const { answer, thread_id } = data;
   return { answer, thread_id };
 };

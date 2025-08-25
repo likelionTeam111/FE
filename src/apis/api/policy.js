@@ -30,6 +30,5 @@ export const searchPolicy = async (plcyNm, page) => {
   const { data } = await instance.get('/policy/search', {
     params: { plcyNm, page },
   });
-  console.log(data);
   return data; // { count, next, previous, results }
 };
