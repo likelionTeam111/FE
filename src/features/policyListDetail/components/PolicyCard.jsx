@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const Container = styled.div`
   height: 8.2rem;
@@ -62,14 +62,14 @@ const Category = styled.span`
 
 const PolicyCard = ({ policyInfo }) => {
   const { id, plcyKywdNm, plcyNm, lclsfNm, mclsfNm } = policyInfo;
+  const navigate = useNavigate();
+
 
   return (
-    <Container>
+    <Container onClick={()=>navigate(`/policyDetail/${id}`)}>
       <TitleWrapper>
         <Title>{plcyNm}</Title>
-        <Link to={`/policyDetail/${id}`}>
           <Button>{'>'}</Button>
-        </Link>
       </TitleWrapper>
       <Keyword># {plcyKywdNm}</Keyword>
       <CategoryWrapper>

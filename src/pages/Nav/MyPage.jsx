@@ -14,20 +14,17 @@ const HeaderSection = styled.div`
   
   display: flex;
   flex-direction: column;
-  gap: 2rem;
 `;
 const Logo = styled.span`
   color: var(--mainBlue);
   font-weight: bold;
   font-size: 2.5rem;
   margin-left: 3rem;
-  padding-top: 1rem;
 `;
 
 const Greeting = styled.p`
   font-size: 2rem;
   color: var(--black);
-  margin: 0;
   line-height: 1.4;
   max-width: 75%;
 margin-left:3rem;
@@ -44,6 +41,9 @@ const Card = styled.div`
   border-radius: 15px 15px 0 0;
   padding: 2rem;
   box-shadow: 0 0.6rem 1.6rem rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  
 `;
 
 const CardTitle = styled.h3`
@@ -125,8 +125,8 @@ const LinkText = styled.button`
 
 const LogoutButton = styled.button`
   width: 100%;
-  margin-top: 3rem;
   height: 4rem;
+  margin: auto;
   border-radius: 1.2rem;
   background: var(--white);
   color: #ff4d4f;

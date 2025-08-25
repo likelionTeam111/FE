@@ -5,7 +5,6 @@ import { useState, useEffect } from 'react';
 //스토어
 import { useAuthStore } from '../../store/useAuthStore';
 import AiIcon from '../../assets/img/ai.png';
-import PixelLogo from '../../assets/img/pixel-logo.png';
 import AiUI from '../../assets/img/Ai UI.png';
 
 //api
@@ -58,6 +57,8 @@ const RecommendWrap = styled.div`
   display: flex;
   flex-direction: column;
   gap: 2rem;
+
+
 `;
 
 const RecommendHeader = styled.div`
@@ -164,26 +165,18 @@ const HelperText = styled.p`
   line-height: 1.5;
 `;
 
-const HelperIcon = styled.button`
+const HelperIcon = styled.div`
   width: 3.5rem;
   height: 3.5rem;
   flex-shrink: 0;
   background: none;
   border: none;
-  cursor: pointer;
+
   padding: 0;
-  transition: all 0.2s ease;
   display: flex;
   align-items: center;
   justify-content: center;
 
-  &:hover {
-    transform: scale(1.1);
-  }
-
-  &:active {
-    transform: scale(0.95);
-  }
 
   img {
     width: 100%;
@@ -289,7 +282,7 @@ const Mainpage = () => {
         </RecommendWrap>
 
         <HelperBanner>
-          <HelperIcon onClick={() => navigate('/chatbot')}>
+          <HelperIcon>
             <img src={AiIcon} alt="AI 도우미" />
           </HelperIcon>
           <HelperText>
