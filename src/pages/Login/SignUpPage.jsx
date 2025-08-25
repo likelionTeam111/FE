@@ -77,7 +77,7 @@ const SignUpPage = () => {
     const [password, setPassword] = useState('');
     const [checkedPassword, setCheckedPassword] = useState('');
 
-    const HAS_SPECIAL = /[#?!@$%^&*\-]/;
+    const HAS_SPECIAL = /[#?!@$%^&*-]/;
     const hasSpecialChar = (s) => HAS_SPECIAL.test(s);
 
     const handleChange = (e) => {
@@ -109,7 +109,6 @@ const SignUpPage = () => {
         try {
             await registration(body);
             // 회원가입 성공 시 로그인 페이지로 이동
-            alert('회원가입 성공');
             navigate('/login');
         } catch (e) {
             console.error(e);

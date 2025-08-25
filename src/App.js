@@ -45,17 +45,21 @@ function App() {
         <Route path="/signup" element={<SignUpPage />} />
         <Route path="/notFound" element={<NotFound />} />
 
+
         <Route element={<OnboardingLayout />}>
+      
           <Route path="/onboarding" element={<Welcome />} />
           <Route path="/onboarding/profile-info" element={<ProfileInfo />} />
           <Route path="/onboarding/occupation-info" element={<OccupationInfo />} />
           <Route path="/onboarding/socio-economic-info" element={<SocioEconomicInfo />} />
           <Route path="/onboarding/extra-info" element={<ExtraInfo />} />
           <Route path="/onboarding/final" element={<Final />} />
+
         </Route>
         <Route element={<ProtectedRoute />}>
           <Route element={<DefaultLayout />}>
-            <Route path="/" element={<Mainpage />} />
+                              <Route path="/" element={<Mainpage />} />
+
             <Route path="/my" element={<MyPage />} />
             <Route path="/search" element={<SearchPage />} />
             <Route path="/favorites" element={<Favorites />} />

@@ -18,12 +18,7 @@ const BackSpace = styled.button`
   color: ${({ $buttonBg }) => $buttonBg};
 `;
 
-const Logo = styled.span`
-  color: var(--mainBlue);
-  font-weight: bold;
-  font-size: 2.5rem;
-  margin: 2rem;
-`;
+
 
 const Header = () => {
   const navigate = useNavigate();
@@ -43,15 +38,18 @@ const Header = () => {
   }
 
   return (
-    <Container $headerBg={headerBg}>
-      {isHome ? (
-        <Logo>청년자립비서</Logo>
+   <>      {isHome ? (
+        <></>
       ) : (
+         <Container $headerBg={headerBg}>
         <BackSpace $headerBg={headerBg} $buttonBg={buttonBg} onClick={() => navigate(-1)}>
           {'<'}
         </BackSpace>
+            </Container>
+
       )}
-    </Container>
+      </>
+
   );
 };
 export default Header;

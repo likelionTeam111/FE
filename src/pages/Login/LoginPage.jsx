@@ -102,7 +102,6 @@ const LoginPage = () => {
             //로그인 세팅
             applyLogin(access, refresh, nickname);
 
-            alert('로그인 성공');
 
             const data = await myPage();
 

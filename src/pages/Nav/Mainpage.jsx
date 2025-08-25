@@ -16,6 +16,23 @@ const PageContainer = styled.main`
     flex-direction: column;
     box-sizing: border-box;
 `;
+const Container = styled.div`
+  height: 7rem;
+  display: flex;
+  align-items: center;
+  background-color: ${({ $headerBg }) => $headerBg};
+  padding: 1rem;
+  margin-top: 1rem;
+  box-sizing: border-box;
+`;
+const Logo = styled.span`
+  color: var(--mainBlue);
+  font-weight: bold;
+  font-size: 3rem;
+  margin: 2rem;
+  font-family: 'Paperlogy';
+`;
+
 
 const HeaderSection = styled.div`
     background-color: var(--white);
@@ -251,6 +268,7 @@ const Mainpage = () => {
 
     return (
         <PageContainer>
+            <Container>    <Logo>청년자립비서</Logo></Container>
             <HeaderSection>
                 <Greeting>{nickname}님, 새로운 시작을 응원해요.</Greeting>
                 <ServiceDesc>필요한 모든 정책, AI가 챙겨드릴게요.</ServiceDesc>
