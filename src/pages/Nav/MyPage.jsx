@@ -8,6 +8,7 @@ const PageContainer = styled.main`
   box-sizing: border-box;
     display: flex;
   flex-direction: column;
+  overflow-y: auto;
 `;
 
 const HeaderSection = styled.div`
@@ -43,7 +44,7 @@ const Card = styled.div`
   box-shadow: 0 0.6rem 1.6rem rgba(0, 0, 0, 0.08);
   display: flex;
   flex-direction: column;
-  
+  overflow-y: auto;
 `;
 
 const CardTitle = styled.h3`

@@ -58,6 +58,7 @@ const Category = styled.span`
   padding-right: 1rem;
   background-color: var(--mainBlue);
   color: var(--white);
+  white-space: nowrap;
 `;
 
 const PolicyCard = ({ policyInfo }) => {
@@ -68,13 +69,13 @@ const PolicyCard = ({ policyInfo }) => {
   return (
     <Container onClick={()=>navigate(`/policyDetail/${id}`)}>
       <TitleWrapper>
-        <Title>{plcyNm}</Title>
+        <Title>{plcyNm.length>18?plcyNm.slice(0,18)+'...':plcyNm}</Title>
           <Button>{'>'}</Button>
       </TitleWrapper>
       <Keyword># {plcyKywdNm}</Keyword>
       <CategoryWrapper>
-        <Category>{lclsfNm}</Category>
-        <Category>{mclsfNm}</Category>
+        <Category>{lclsfNm.length>7?lclsfNm.slice(0,8)+'...':lclsfNm}</Category>
+        <Category>{mclsfNm.length>7?mclsfNm.slice(0,8)+'...':mclsfNm}</Category>
       </CategoryWrapper>
     </Container>
   );
