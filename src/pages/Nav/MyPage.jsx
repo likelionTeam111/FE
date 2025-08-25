@@ -4,18 +4,24 @@ import { useInfoStore } from '../../store/useInfoStore';
 import { useAuthStore } from '../../store/useAuthStore';
 
 const PageContainer = styled.main`
-  background-color: var(--mainSky);
-  min-height: 100vh;
-  padding: 0;
-  padding-top: 6rem;
-  padding-bottom: 8rem;
+  height: calc(100vh - 12rem);
+  box-sizing: border-box;
+    display: flex;
+  flex-direction: column;
 `;
 
 const HeaderSection = styled.div`
-  background-color: var(--mainSky);
-  padding: 2rem 2rem 1.5rem;
-  text-align: left;
-  margin-bottom: 3rem;
+  
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+`;
+const Logo = styled.span`
+  color: var(--mainBlue);
+  font-weight: bold;
+  font-size: 2.5rem;
+  margin-left: 3rem;
+  padding-top: 1rem;
 `;
 
 const Greeting = styled.p`
@@ -24,29 +30,28 @@ const Greeting = styled.p`
   margin: 0;
   line-height: 1.4;
   max-width: 75%;
-  margin-left: 10%;
-  font-weight: 700;
+margin-left:3rem;
+  font-weight: 400;
 `;
 
-const Section = styled.section`
-  max-width: 75%;
-  margin: 0 auto;
-  padding: 0 2rem;
-`;
+
 
 const Card = styled.div`
+  background-color: var(--mainSky);
+  flex:1;
+  box-sizing: border-box;
   margin-top: 2rem;
-  background: var(--white);
-  border-radius: 1.4rem;
+  border-radius: 15px 15px 0 0;
   padding: 2rem;
   box-shadow: 0 0.6rem 1.6rem rgba(0, 0, 0, 0.08);
 `;
 
 const CardTitle = styled.h3`
-  font-size: 1.8rem;
-  color: rgba(0, 0, 0, 0.6);
-  font-weight: 800;
+  font-size: 1.4rem;
+  color: var(--grey);
+  font-weight: 600;
   margin-bottom: 1rem;
+    margin: 0 1rem;
 `;
 
 const CardDesc = styled.p`
@@ -54,6 +59,9 @@ const CardDesc = styled.p`
   color: rgba(0, 0, 0, 0.75);
   margin-top: 0.8rem;
   line-height: 1.6;
+    margin: 1rem;
+  
+  
 `;
 
 const ProfilePanel = styled.div`
@@ -61,6 +69,7 @@ const ProfilePanel = styled.div`
   background: var(--mainBlue);
   color: var(--white);
   border-radius: 1.2rem;
+  margin: 0 1rem;
   padding: 2rem;
 `;
 
@@ -79,11 +88,11 @@ const InfoItem = styled.div`
 const InfoLabel = styled.span`
   font-size: 1.4rem;
   opacity: 0.95;
+  color: var(--grey);
 `;
 
 const InfoValue = styled.span`
   font-size: 1.6rem;
-  font-weight: 800;
 `;
 
 const SubSectionTitle = styled.h4`
@@ -103,7 +112,7 @@ const LinkText = styled.button`
   padding: 1rem 1.5rem;
   border: none;
   border-radius: 1rem;
-  font-weight: 600;
+  font-weight: 400;
   transition: all 0.2s ease;
   width: 100%;
 
@@ -218,6 +227,7 @@ const MyPage = () => {
   return (
     <PageContainer>
       <HeaderSection>
+        <Logo>청년자립비서</Logo>
         <Greeting>
           {nickname}님,
           <br />
@@ -225,13 +235,13 @@ const MyPage = () => {
         </Greeting>
       </HeaderSection>
 
-      <Section>
+      
         <Card>
           <CardTitle>내 맞춤 프로필</CardTitle>
           <CardDesc>
             아래 정보를 기준으로 정책을 추천해 드렸어요.
             <br />
-            AI맞춤 정책 다시 탐색하기로 업데이트 할 수 있어요!
+            <strong> AI맞춤 정책 다시 탐색하기</strong>로 업데이트 할 수 있어요!
           </CardDesc>
 
           <ProfilePanel>
@@ -273,11 +283,12 @@ const MyPage = () => {
 
           <SubSectionTitle>나의 정책 관리</SubSectionTitle>
           <LinkText onClick={() => navigate('/favorites')}>관심 정책 목록</LinkText>
+                  <LogoutButton onClick={handleLogout}>로그아웃</LogoutButton>
+
         </Card>
 
-        <LogoutButton onClick={handleLogout}>로그아웃</LogoutButton>
         <LargeUp />
-      </Section>
+      
     </PageContainer>
   );
 };

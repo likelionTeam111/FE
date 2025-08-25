@@ -12,7 +12,7 @@ const Container = styled.div`
   border-radius: 20px;
   padding: 1rem;
   gap: 0.3rem;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.15);
 `;
 
 const TitleWrapper = styled.div`
